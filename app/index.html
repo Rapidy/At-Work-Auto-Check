@@ -1,66 +1,123 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+<head>
 
-    <meta charset="utf-8">
-    <base href="/">
+  <meta charset="utf-8">
+  <base href="/">
 
-    <title></title>
-    <meta name="description" content="Тестовое задание">
+  <title></title>
+  <meta name="description" content="Тестовое задание">
 
-    <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width">
 
-    <link rel="icon" href="images/favicon.png">
-    <meta property="og:image" content="images/dist/preview.jpg">
-    
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    
-    <link rel="stylesheet" href="css/main.min.css">
+  <link rel="icon" href="images/favicon.png">
+  <meta property="og:image" content="images/dist/preview.jpg">
 
-  </head>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
 
-  <body>
+  <link rel="stylesheet" href="css/main.min.css">
 
-    <header class="header">
-      <div class="container">
+</head>
 
-        <div class="header-brand">
+<body>
 
-          <div class="header-brand__logo">
-            <img src="images/dist/logo.svg" alt="Логотип At-Work">
-          </div>
+  <header class="header">
+    <div class="container">
 
-          <span class="header-brand__author">Проект <a href="https://at-work.pro">At-Work.pro</a></span>
+      <div class="header-brand">
 
+        <div class="header-brand__logo">
+          <img src="images/dist/logo.svg" alt="Логотип At-Work">
         </div>
 
-        <a class="header-helpbtn" href="help.html">Помощь</a>
+        <span class="header-brand__author">Проект <a href="https://at-work.pro">At-Work.pro</a></span>
 
       </div>
-    </header>
 
-    <main class="main">
-      <div class="container">
+      <a class="header-helpbtn" href="help.html">Помощь</a>
 
-        <div class="main-headers">
-          <h1>Проверка авто по VIN и госномеру</h1>
-          <h2>ДТП, ремонт, залоги, ограничения, отсутствие тех. обслуживания, использование<br> автомобиля в такси и другие данные из официальных источников</h2>
-        </div>
+    </div>
+  </header>
 
-        <div class="main-car animate__animated animate__fadeInRight">
-          <img class="main-car__wheel" src="images/dist/wheel.png" alt="Колесо Ferrari переднее">
-          <img class="main-car__wheel" src="images/dist/wheel.png" alt="Колесо Ferrari заднее">
-        </div>
+  <main class="main">
+    <div class="container">
 
+      <div class="main-headers">
+        <h1>Проверка авто по VIN и госномеру</h1>
+        <h2>ДТП, ремонт, залоги, ограничения, отсутствие тех. обслуживания, использование<br> автомобиля в такси и
+          другие данные из официальных источников</h2>
       </div>
-    </main>
 
-    <script src="js/app.min.js"></script>
+      <form class="main-check animate__animated animate__fadeIn">
 
-  </body>
-</html>  
+        <div class="main-check__input">
+          <input type="text" class="checkInput" placeholder="Введите VIN или госномер" required>
+          <span>?</span>
+        </div>
 
+        <button type="submit" class="main-check__btn">Проверить</button>
 
+      </form>
 
-<!-- #include virtual="/parts/footer.html" -->
+      <div class="main-car animate__animated animate__fadeInRight">
+        <img class="main-car__wheel" src="images/dist/wheel.png" alt="Колесо Ferrari переднее">
+        <img class="main-car__wheel" src="images/dist/wheel.png" alt="Колесо Ferrari заднее">
+      </div>
+
+    </div>
+  </main>
+
+  <section class="slider">
+    <div class="slider__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, magnam!</div>
+    <div class="slider__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, magnam!</div>
+    <div class="slider__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, magnam!</div>
+    <div class="slider__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, magnam!</div>
+    <div class="slider__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, magnam!</div>
+  </section>
+
+  <section class="slider-report">
+    <div class="slider-report__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, unde.</div>
+    <div class="slider-report__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, unde.</div>
+    <div class="slider-report__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, unde.</div>
+    <div class="slider-report__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, unde.</div>
+    <div class="slider-report__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, unde.</div>
+  </section>
+
+  <section class="check">
+    <div class="container">
+
+      <h2>Проверьте автомобиль прямо сейчас</h2>
+
+      <form class="main-check animate__animated animate__fadeIn">
+
+        <div class="main-check__input">
+          <input type="text" class="checkInput" placeholder="Введите VIN или госномер" required>
+          <span>?</span>
+        </div>
+
+        <button type="submit" class="main-check__btn">Проверить</button>
+
+      </form>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+
+      <nav class="footer-menu">
+        <li class="footer-menu__item"><a href="about.html">О проекте</a></li>
+        <li class="footer-menu__item"><a href="help.html">Помощь</a></li>
+      </nav>
+
+      <p class="footer__info">2021 &copy; Проверка авто — сервис проверки автомобиля по VIN коду и госномеру. <br>Оплачивая лицензионное вознаграждение, вы принимаете <a href="terms.html">условия соглашения</a>.</p>
+
+    </div>
+  </footer>
+
+  <script src="js/app.min.js"></script>
+
+</body>
+
+</html>

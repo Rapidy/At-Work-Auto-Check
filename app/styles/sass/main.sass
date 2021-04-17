@@ -37,13 +37,14 @@
       font-size: 46px
     h2
       font-weight: 400
-      font-size: 18px
+      font-size: 18px      
   &-car
     margin: 0 auto
     position: relative
     background: url(../images/dist/ferrari.jpg) no-repeat center / contain
     height: 200px
     width: 720px
+    margin-top: 50px
     -webkit-box-reflect: below 1px linear-gradient(transparent, rgba(0,0,0,.15))
     &__wheel
       position: absolute    
@@ -55,13 +56,86 @@
       &:last-of-type
         height: 44%
         bottom: 5%
-        right: 16.25%  
+        right: 16.25% 
+
+.main-check
+  display: flex
+  justify-content: center
+  margin-top: 30px
+  &__input
+    width: 40%
+    border-radius: 6px 0 0 6px
+    position: relative
+    span
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 21px
+      height: 21px
+      position: absolute
+      border-radius: 50%
+      border: 1px solid $textcolor
+      padding: 7px 8px 8px 8px
+      right: 15px
+      top: 50%
+      transform: translateY(-50%)
+      cursor: pointer
+      &:hover
+        border: 1px solid $accent
+        color: #fff
+        background: $accent
+    input
+      border-radius: 6px 0 0 6px
+      width: 100%
+      padding: 12px 20px
+      font-size: 18px
+  &__btn
+    padding: 12px 25px
+    font-size: 18px
+    background: $accent
+    border-radius: 0 6px 6px 0
+    &:hover
+      background: lighten($accent, 15%)                   
+
+.check
+  margin-top: 40px
+  padding: 50px 0
+  background: #e0e0e0
+  h2
+    font-weight: 600
+    text-align: center
+    margin-bottom: -10px
+
+.footer
+  padding: 40px 0 60px
+  color: #777
+  a
+    color: $accent
+  &-menu
+    display: flex
+    &__item
+      margin-right: 25px
+  &__info
+    line-height: 22px
+    margin-top: 20px
+    a
+      &:hover
+        text-decoration: underline
+          
 
 @keyframes wheel
   0%
     transform: rotate(0) 
   100%
     transform: rotate(-360deg) 
+
+.slider
+  margin-top: 220px
+  .slick-slide
+    padding: 30px
+  .slick-current
+    background: $accent !important
+    color: #fff
 
 @import media
 

@@ -16,6 +16,8 @@ $gutter: $grid-gutter-width
 @import 'node_modules/bootstrap/scss/bootstrap-reboot.scss' // Bootstrap Reboot collection
 @import 'node_modules/bootstrap/scss/mixins/_breakpoints.scss' // Bootstrap Breakpoints mixin
 @import 'node_modules/animate.css/animate.min'
+@import 'node_modules/slick-carousel/slick/slick.scss'
+@import 'node_modules/slick-carousel/slick/slick-theme.scss'
 
 // FONTS LOAD SECTION
 
@@ -34,7 +36,7 @@ $gutter: $grid-gutter-width
 // GENERAL DOCUMENT STYLES
 
 ::placeholder
-	color: #666
+	color: #999
 
 ::selection
 	background-color: $accent
@@ -42,10 +44,13 @@ $gutter: $grid-gutter-width
 
 input, textarea
 	outline: none
+	border: 1px solid #777
 	&:focus:required:invalid
-		border-color: red
+		border: 1px solid $accent
 	&:required:valid
-		border-color: green
+		border: 1px solid green
+	&:focus
+		border: 1px dashed $accent
 
 body
 	font-family: $userfont
@@ -65,6 +70,12 @@ p
 a, a:hover, a:active, a:visited
 	color: #fff
 	text-decoration: none
+
+button, button:hover, button:active
+	border: none
+	outline: none
+	background: none
+	color: #fff
 
 .container
 	max-width: 1140px
