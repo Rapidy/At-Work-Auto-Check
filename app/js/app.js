@@ -19,12 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
 		dots: true,
 		centerMode: true,
 		arrows: false,
-		centerPadding: '60px',
+		autoplay: true,
+		autoplaySpeed: 4000
 	})
 
 	$('.slider-report').slick({
 		infinite: true,
-		slidesToShow: 1,
+		slidesToShow: 3,
 		slidesToScroll: 1,
 		fade: true,
 		cssEase: 'linear',

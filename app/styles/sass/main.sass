@@ -131,11 +131,25 @@
 
 .slider
   margin-top: 220px
-  .slick-slide
-    padding: 30px
+  &__item
+    height: 350px
+    &:first-child
+      
+      background: url(../images/dist/slider/1.jpg) no-repeat center / cover   
+  .slick-slide 
+    cursor: pointer
   .slick-current
-    background: $accent !important
-    color: #fff
+
+  .slick-dots
+    top: 10px
+    height: 30px
+    .slick-active
+      background: #fff
+    li
+      width: 12px
+      height: 12px
+      border: 2px solid #fff
+      border-radius: 50%  
 
 @import media
 
