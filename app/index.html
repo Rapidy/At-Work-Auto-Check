@@ -7,7 +7,7 @@
   <base href="/">
 
   <title></title>
-  <meta name="description" content="Тестовое задание">
+  <meta name="description" content="">
 
   <meta name="viewport" content="width=device-width">
 
@@ -22,31 +22,13 @@
 
 <body>
 
-  <header class="header">
-    <div class="container">
-
-      <div class="header-brand">
-
-        <div class="header-brand__logo">
-          <img src="images/dist/logo.svg" alt="Логотип At-Work">
-        </div>
-
-        <span class="header-brand__author">Проект <a href="https://at-work.pro">At-Work.pro</a></span>
-
-      </div>
-
-      <a class="header-helpbtn" href="help.html">Помощь</a>
-
-    </div>
-  </header>
-
   <main class="main">
     <div class="container">
 
       <div class="main-headers">
-        <h1>Проверка авто по VIN и госномеру</h1>
-        <h2>ДТП, ремонт, залоги, ограничения, отсутствие тех. обслуживания, использование<br> автомобиля в такси и
-          другие данные из официальных источников</h2>
+        <h1>Проверка авто по ВИН (VIN) коду <br>и госномеру</h1>
+        <h2>Вы решили купить подержанный автомобиль? <br>
+          Проверьте его по ВИН (VIN) коду и госномеру с гарантией достоверности данных,<br> воспользовавшись нашим сервисом.</h2>
       </div>
 
       <form class="main-check animate__animated animate__fadeIn">
@@ -60,47 +42,70 @@
 
       </form>
 
-      <div class="main-car animate__animated animate__fadeInRight">
-        <img class="main-car__wheel" src="images/dist/wheel.png" alt="Колесо Ferrari переднее">
-        <img class="main-car__wheel" src="images/dist/wheel.png" alt="Колесо Ferrari заднее">
-      </div>
-
     </div>
   </main>
 
-  <section class="slider">
+  <section class="checklist">
+    <div class="container">
 
-    <div class="slider__item">
-      <p>Lorem ipsum dolor sit amet.</p>
-    </div>
+      <h2>Что можно проверить</h2>
 
-    <div class="slider__item">
-      <p>Lorem ipsum dolor sit amet.</p>
-    </div>
+      <nav class="checklist-nav">
 
-    <div class="slider__item">
-      <p>Lorem ipsum dolor sit amet.</p>
-    </div>
+        <li class="checklist-nav__item" data-id="1">Участие в ДТП</li>
+        <li class="checklist-nav__item" data-id="2">Наличие штрафов</li>
+        <li class="checklist-nav__item" data-id="3">История владения</li>
+        <li class="checklist-nav__item" data-id="4">История эксплуатации</li>
+        <li class="checklist-nav__item" data-id="5">Нахождение в розыске</li>
+        <li class="checklist-nav__arrow"><img src="images/dist/arrow.svg" alt=""></li>
 
-    <div class="slider__item">
-      <p>Lorem ipsum dolor sit amet.</p>
-    </div>
+      </nav>
 
-    <div class="slider__item">
-      <p>Lorem ipsum dolor sit amet.</p>
+      <div class="checklist-photo">
+
+        <div class="checklist-photo__item active"><img src="images/dist/checklist/photo-default.svg" alt=""></div>
+        <div class="checklist-photo__item hidden" data-id="1"><img src="images/dist/checklist/photo-1.svg" alt=""></div>
+        <div class="checklist-photo__item hidden" data-id="2"><img src="images/dist/checklist/photo-2.svg" alt=""></div>
+        <div class="checklist-photo__item hidden" data-id="3"><img src="images/dist/checklist/photo-3.svg" alt=""></div>
+        <div class="checklist-photo__item hidden" data-id="4"><img src="images/dist/checklist/photo-4.svg" alt=""></div>
+        <div class="checklist-photo__item hidden" data-id="5"><img src="images/dist/checklist/photo-5.svg" alt=""></div>
+
+      </div>
+
     </div>
-    
   </section>
 
-  <section class="slider-report">
-    <div class="slider-report__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, unde.</div>
-    <div class="slider-report__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, unde.</div>
-    <div class="slider-report__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, unde.</div>
-    <div class="slider-report__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, unde.</div>
-    <div class="slider-report__item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, unde.</div>
+  <section class="adv">
+    <div class="container">
+
+      <div class="adv__item">
+
+        <img src="images/dist/price.svg" alt="">
+        <h3>Цена</h3>
+        <p>Стоимость за отчёт выгодно отличается от подобных сервисов</p>
+
+      </div>
+
+      <div class="adv__item">
+
+        <img src="images/dist/comfort.svg" alt="">
+        <h3>Удобство</h3>
+        <p>Вся самая необходимая информация собрана в одном отчёте, который можно не скачивая посмотреть на нашем сайте. Вы всегда сможете его найти в личном кабинете</p>
+
+      </div>
+
+      <div class="adv__item">
+
+        <img src="images/dist/truth.svg" alt="">
+        <h3>Достоверность</h3>
+        <p>Мы можем гарантировать точность данных, так как получаем информацию только из официальных источников ГИБДД</p>
+
+      </div>
+
+    </div>
   </section>
 
-  <section class="check">
+  <footer class="footer">
     <div class="container">
 
       <h2>Проверьте автомобиль прямо сейчас</h2>
@@ -115,19 +120,6 @@
         <button type="submit" class="main-check__btn">Проверить</button>
 
       </form>
-
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="container">
-
-      <nav class="footer-menu">
-        <li class="footer-menu__item"><a href="about.html">О проекте</a></li>
-        <li class="footer-menu__item"><a href="help.html">Помощь</a></li>
-      </nav>
-
-      <p class="footer__info">2021 &copy; Проверка авто — сервис проверки автомобиля по VIN коду и госномеру. <br>Оплачивая лицензионное вознаграждение, вы принимаете <a href="terms.html">условия соглашения</a>.</p>
 
     </div>
   </footer>
