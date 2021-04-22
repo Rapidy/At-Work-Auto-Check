@@ -3,7 +3,7 @@
 $accent: #E11E3E // Accent Color
 $bg: #4A80AA // Background color
 $fontsize: 16px // Body Font Size
-$textcolor: #333 // Text Color
+$textcolor: #000 // Text Color
 $lineheight: 1.65 // Document Line Height
 $userfont: 'source-sans', sans-serif // User Font Family
 $systemfont: -apple-system, BlinkMacSystemFont, Arial, sans-serif // System Font Family
@@ -65,8 +65,14 @@ body
 li
 	list-style-type: none
 
+h1,h2,h3,h4,h5,h6
+	font-weight: 600	
+
 p
 	margin: 0
+
+a, button
+	transition: .2s	
 
 a, a:hover, a:active, a:visited
 	color: #fff

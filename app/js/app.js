@@ -27,13 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		$('.checklist-photo__item')[0].classList.remove('hidden');
 	});
 
-	// $('.slider-report').slick({
-	// 	infinite: true,
-	// 	slidesToShow: 3,
-	// 	slidesToScroll: 1,
-	// 	fade: true,
-	// 	cssEase: 'linear',
-	// 	speed: 500
-	// })
+	$('.report-slider').slick({
+		infinite: true,
+		cssEase: 'linear',
+		fade: true,
+		speed: 500
+	})
 
 })
