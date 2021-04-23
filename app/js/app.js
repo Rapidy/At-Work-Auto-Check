@@ -27,11 +27,23 @@ document.addEventListener('DOMContentLoaded', () => {
 		$('.checklist-photo__item')[0].classList.remove('hidden');
 	});
 
-	$('.report-slider').slick({
+	$('.report-computer-viewport-slider').slick({
 		infinite: true,
-		cssEase: 'linear',
-		fade: true,
-		speed: 500
+		slidesToScroll: 1,
+		slidesToShow: 1,
+		dots: true,
+		nextArrow: '<button class="report-computer__btn report-computer__btn--next"><img src="../images/dist/rightarrow.svg"></button>',
+		prevArrow: '<button class="report-computer__btn report-computer__btn--prev"><img src="../images/dist/leftarrow.svg"</button>'
+	})
+
+	$('.hint-btn').click(function() {
+		const hint = $('.main-check-input__hint');
+
+		if(hint.hasClass('show')) {
+			$(hint.removeClass('show'))
+		} else {
+			$(hint.addClass('show'))
+		}
 	})
 
 })
