@@ -166,7 +166,10 @@
 
 .report
   background: $bg
-  padding: 40px 0 108px
+  padding: 40px 0 108px 
+  .container
+    max-width: 1500px
+    overflow: hidden
   h2
     font-size: 36px
     color: #fff
@@ -204,18 +207,25 @@
       top: 4.7px
       right: 6px
       bottom: 71px
+      background: $bg
       &-slider
-        &__item
+        .slick-current
+          img
+            width: 99.75% !important 
+            height: 304px
+        .slick-list
+          overflow: visible    
+        .slick-slide 
+          cursor: pointer
           border-radius: 3px
           width: 540px
-          height: 304px
+          height: 309px
           overflow: hidden
+          display: flex
+          align-items: center
           img
-            height: 100%
-            width: 100%
-
-        .slick-slide 
-          cursor: pointer    
+            width: 50%
+            margin: 0 auto   
         .slick-dots
           height: 20px
           bottom: -113px
@@ -234,7 +244,9 @@
   h2
     text-align: center
     font-size: 28px
-    margin-bottom: -10px   
+    margin-bottom: -10px
+  .main-check-input__hint
+    top: -460px     
       
 
 @import media

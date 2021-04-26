@@ -33,7 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		slidesToShow: 1,
 		dots: true,
 		nextArrow: '<button class="report-computer__btn report-computer__btn--next"><img src="../images/dist/rightarrow.svg"></button>',
-		prevArrow: '<button class="report-computer__btn report-computer__btn--prev"><img src="../images/dist/leftarrow.svg"</button>'
+		prevArrow: '<button class="report-computer__btn report-computer__btn--prev"><img src="../images/dist/leftarrow.svg"</button>',
+		centerMode: true,
+		centerPadding: '0'
 	})
 
 	$('.hint-btn').click(function() {

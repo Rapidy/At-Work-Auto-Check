@@ -153,7 +153,6 @@
            <div class="report-computer-viewport-slider__item"><img src="images/dist/opera_BR0u3Kp4jy.jpg" alt=""></div>
            <div class="report-computer-viewport-slider__item"><img src="images/dist/opera_BR0u3Kp4jy.jpg" alt=""></div>
            <div class="report-computer-viewport-slider__item"><img src="images/dist/opera_BR0u3Kp4jy.jpg" alt=""></div>
-           <div class="report-computer-viewport-slider__item"><img src="images/dist/opera_BR0u3Kp4jy.jpg" alt=""></div>
          </div> 
 
         </div>
@@ -168,11 +167,45 @@
 
       <h2>Проверьте автомобиль прямо сейчас</h2>
 
-      <form class="main-check animate__animated animate__fadeIn">
+      <form class="main-check">
 
-        <div class="main-check__input">
+        <div class="main-check-input">
+
           <input type="text" class="checkInput" placeholder="Введите VIN или госномер" required>
-          <span>?</span>
+          <span class="question-mark hint-btn">?</span>
+
+          <div class="main-check-input__hint">
+
+            <span class="cross hint-btn">&times;</span>
+            <h3>Где находится VIN* код</h3>
+
+            <div class="main-check-input__hint-item">
+              <div><img src="images/dist/hint-icon-1.svg" alt=""></div>
+              <ul>
+                <li>в паспорте ТС</li>
+                <li>свидетельстве о регистрации ТС</li>
+                <li>гарантийном талоне/талоне ТО</li>
+                <li>в страховом полисе ОСАГО</li>
+              </ul>
+            </div>
+
+            <div class="main-check-input__hint-item">
+              <div><img src="images/dist/hint-icon-2.svg" alt=""></div>
+              <ul>
+                <li>на раме передней двери</li>
+                <li>на щитке у ветрового стекла</li>
+                <li>на двигателе</li>
+                <li>на теплоизоляционной перегородке</li>
+                <li>на внутреннем своде левого колеса</li>
+                <li>на руле / рулевой колонке</li>
+                <li>на кронштейне радиатора</li>
+              </ul>
+            </div>
+
+            <p>*Каждому транспортному средству присваивается идентификационный номер (Vehicle identification number) VIN — уникальный код из 17 знаков (буквы латинского алфавита и арабские цифры), содержащий информацию о производителе, характеристиках данного транспортного средства, а также год его выпуска.</p>
+
+          </div>
+
         </div>
 
         <button type="submit" class="main-check__btn">Проверить</button>
