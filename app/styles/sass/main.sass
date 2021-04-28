@@ -54,7 +54,7 @@
       visibility: hidden
       transition: .25s
       opacity: 0
-      z-index: 2
+      z-index: 15
       &.show
         opacity: 1
         transition: .25s
@@ -141,6 +141,8 @@
     display: flex
     margin-top: -22px
     &__item
+      img
+        max-width: 100%
       &.hidden
         opacity: 0
         transition: opacity .25s ease-in-out
@@ -166,21 +168,15 @@
 
 .report
   background: $bg
-  padding: 40px 0 108px 
-  .container
-    max-width: 1500px
-    overflow: hidden
+  padding: 40px 0 108px
+  position: relative
   h2
     font-size: 36px
     color: #fff
     text-align: center
-    margin-bottom: 45px
-  &-computer
-    width: 552px
-    height: 380px
-    background: url(../images/dist/computer.svg)
+    margin-bottom: 45px   
+  &-container
     position: relative
-    margin: 0 auto
     &__btn
       border-radius: 50%
       background: #fff
@@ -191,53 +187,24 @@
       display: flex
       justify-content: center
       align-items: center
+      transform: translateY(-50%)
+      z-index: 10
       &:hover
         background: $accent
       &--next
-        right: -80px
+        right: 0
         img
           transform: translateX(2px)
       &--prev
-        left: -80px
+        left: 0
         img
           transform: translateX(-2px)  
-    &-viewport
-      position: absolute
-      left: 4.84px
-      top: 4.7px
-      right: 6px
-      bottom: 71px
-      background: $bg
-      &-slider
-        .slick-current
-          img
-            width: 99.75% !important 
-            height: 304px
-        .slick-list
-          overflow: visible    
-        .slick-slide 
-          cursor: pointer
-          border-radius: 3px
-          width: 540px
-          height: 309px
-          overflow: hidden
-          display: flex
-          align-items: center
-          img
-            width: 50%
-            margin: 0 auto   
-        .slick-dots
-          height: 20px
-          bottom: -113px
-          .slick-active
-            background: #fff
-          li
-            width: 10px
-            height: 10px
-            border: 1px solid #fff
-            border-radius: 50%
-            &:not(:last-of-type)
-              margin-right: 16px  
+    &-slider
+      height: 300px
+      img
+        max-width: 600px
+        visibility: hidden
+        cursor: pointer  
 
 .footer
   padding: 80px 0 87px

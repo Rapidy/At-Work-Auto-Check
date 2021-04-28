@@ -6,7 +6,7 @@ window.$ = $
 import slick from 'slick-carousel'
 
 // // Import vendor jQuery plugin example (not module)
-// require('~/app/libs/mmenu/dist/mmenu.js')
+require('../libs/jquery.waterwheelCarousel.min.js')
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -27,25 +27,45 @@ document.addEventListener('DOMContentLoaded', () => {
 		$('.checklist-photo__item')[0].classList.remove('hidden');
 	});
 
-	$('.report-computer-viewport-slider').slick({
-		infinite: true,
-		slidesToScroll: 1,
-		slidesToShow: 1,
-		dots: true,
-		nextArrow: '<button class="report-computer__btn report-computer__btn--next"><img src="../images/dist/rightarrow.svg"></button>',
-		prevArrow: '<button class="report-computer__btn report-computer__btn--prev"><img src="../images/dist/leftarrow.svg"</button>',
-		centerMode: true,
-		centerPadding: '0'
+	// $('.report-computer-viewport-slider').slick({
+	// 	infinite: true,
+	// 	slidesToScroll: 1,
+	// 	slidesToShow: 1,
+	// 	dots: true,
+	// 	nextArrow: '<button class="report-computer__btn report-computer__btn--next"><img src="../images/dist/rightarrow.svg"></button>',
+	// 	prevArrow: '<button class="report-computer__btn report-computer__btn--prev"><img src="../images/dist/leftarrow.svg"</button>',
+	// 	centerMode: true,
+	// 	centerPadding: '0'
+	// })
+	let sliderItems = 3;
+
+	if (window.matchMedia("(max-width: 850px)").matches) sliderItems = 1
+	if (window.matchMedia("(max-width: 500px)").matches) sliderItems = 0
+
+	const slider = $('.report-container-slider').waterwheelCarousel({
+		flankingItems: sliderItems,
+		autoPlay: 5000,
+	});
+	
+	$('.report-container__btn--prev').click(function() {
+		slider.prev()
 	})
 
-	$('.hint-btn').click(function() {
-		const hint = $('.main-check-input__hint');
-
-		if(hint.hasClass('show')) {
-			$(hint.removeClass('show'))
-		} else {
-			$(hint.addClass('show'))
-		}
+	$('.report-container__btn--next').click(function() {
+		slider.next()
 	})
+
+	$('.hint-btn--top').click(function() {
+		const hint = $('.hint--top');
+
+		hint.toggleClass('show')
+	})
+
+	$('.hint-btn--bottom').click(function() {
+		const hint = $('.hint--bottom');
+
+		hint.toggleClass('show')
+	})
+
 
 })
