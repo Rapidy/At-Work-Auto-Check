@@ -37,14 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
 	// 	centerMode: true,
 	// 	centerPadding: '0'
 	// })
-	let sliderItems = 3;
+	let sliderItems = 3,
+			autoplay = 5000
 
-	if (window.matchMedia("(max-width: 850px)").matches) sliderItems = 1
-	if (window.matchMedia("(max-width: 500px)").matches) sliderItems = 0
+	if (window.matchMedia("(max-width: 950px)").matches) { sliderItems = 1 }
+	if (window.matchMedia("(max-width: 750px)").matches) { sliderItems = 0; autoplay = 0 }
+
 
 	const slider = $('.report-container-slider').waterwheelCarousel({
 		flankingItems: sliderItems,
-		autoPlay: 5000,
+		autoPlay: autoplay,
 	});
 	
 	$('.report-container__btn--prev').click(function() {
@@ -67,5 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		hint.toggleClass('show')
 	})
 
+	$('.info-menu__item').click(function() {
+		$('.info-menu__item').removeClass('active')
+		$(this).addClass('active');
+		console.log($(this).siblings())
+	})
 
 })
