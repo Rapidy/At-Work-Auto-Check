@@ -3,6 +3,7 @@ import $ from 'jquery'
 window.jQuery = $
 window.$ = $
 
+import magnificPopup from 'magnific-popup'
 import slick from 'slick-carousel'
 
 // // Import vendor jQuery plugin example (not module)
@@ -12,67 +13,111 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	$('img').attr('draggable','false');
 
-	$('.checklist-nav__item').mouseenter(function() {
-		let currentNavItem = $(this).data('id');
-		let currentPhoto = $('.checklist-photo__item')[currentNavItem];
+	if($('main').is('.main')) {
 
-		$('.checklist-photo__item').removeClass('active').addClass('hidden');
-		currentPhoto.classList.remove('hidden');
-		currentPhoto.classList.add('active')
-	});
-
-	$('.checklist-nav').mouseleave(function() {
-		$('.checklist-photo__item').addClass('hidden').removeClass('active');
-		$('.checklist-photo__item')[0].classList.add('active');
-		$('.checklist-photo__item')[0].classList.remove('hidden');
-	});
-
-	// $('.report-computer-viewport-slider').slick({
-	// 	infinite: true,
-	// 	slidesToScroll: 1,
-	// 	slidesToShow: 1,
-	// 	dots: true,
-	// 	nextArrow: '<button class="report-computer__btn report-computer__btn--next"><img src="../images/dist/rightarrow.svg"></button>',
-	// 	prevArrow: '<button class="report-computer__btn report-computer__btn--prev"><img src="../images/dist/leftarrow.svg"</button>',
-	// 	centerMode: true,
-	// 	centerPadding: '0'
-	// })
-	let sliderItems = 3,
-			autoplay = 5000
-
-	if (window.matchMedia("(max-width: 950px)").matches) { sliderItems = 1 }
-	if (window.matchMedia("(max-width: 750px)").matches) { sliderItems = 0; autoplay = 0 }
-
-
-	const slider = $('.report-container-slider').waterwheelCarousel({
-		flankingItems: sliderItems,
-		autoPlay: autoplay,
-	});
+		$('.checklist-nav__item').mouseenter(function() {
+			let currentNavItem = $(this).data('id');
+			let currentPhoto = $('.checklist-photo__item')[currentNavItem];
 	
-	$('.report-container__btn--prev').click(function() {
-		slider.prev()
-	})
+			$('.checklist-photo__item').removeClass('active').addClass('hidden');
+			currentPhoto.classList.remove('hidden');
+			currentPhoto.classList.add('active')
+		});
+	
+		$('.checklist-nav').mouseleave(function() {
+			$('.checklist-photo__item').addClass('hidden').removeClass('active');
+			$('.checklist-photo__item')[0].classList.add('active');
+			$('.checklist-photo__item')[0].classList.remove('hidden');
+		});
+	
+		let sliderItems = 3,
+				autoplay = 5000
+	
+		if (window.matchMedia("(max-width: 950px)").matches) { sliderItems = 1 }
+		if (window.matchMedia("(max-width: 750px)").matches) { sliderItems = 0; autoplay = 0 }
+	
+	
+		const slider = $('.report-container-slider').waterwheelCarousel({
+			flankingItems: sliderItems,
+			autoPlay: autoplay,
+		});
+		
+		$('.report-container__btn--prev').click(function() {
+			slider.prev()
+		})
+	
+		$('.report-container__btn--next').click(function() {
+			slider.next()
+		})
+	
+		$('.hint-btn--top').click(function() {
+			const hint = $('.hint--top');
+	
+			hint.toggleClass('show')
+		})
+	
+		$('.hint-btn--bottom').click(function() {
+			const hint = $('.hint--bottom');
+	
+			hint.toggleClass('show')
+		})	
+		
+	} else {
 
-	$('.report-container__btn--next').click(function() {
-		slider.next()
-	})
+		$('.info-menu__item').click(function(e) {
+			e.preventDefault();
 
-	$('.hint-btn--top').click(function() {
-		const hint = $('.hint--top');
+			if($(this).hasClass('active')) {
+				return
+			}
 
-		hint.toggleClass('show')
-	})
+			$('.info-menu__item').removeClass('active')
+			$(this).addClass('active')
+	
+			const id = $(this).attr('href'),
+						top = $(id).offset().top - 30;
+			$('.info-main').animate({scrollTop: top}, 500)
+		})
 
-	$('.hint-btn--bottom').click(function() {
-		const hint = $('.hint--bottom');
+		document.querySelector('.info-main').addEventListener('scroll', function() {
+			const scrollDistance = this.scrollTop + 50;
+			
+			document.querySelectorAll('.info-main__item').forEach(function(item, i) {
 
-		hint.toggleClass('show')
-	})
+				if(item.offsetTop <= scrollDistance) {
+					document.querySelectorAll('.info-menu__item').forEach(function(item) {
+						if(item.classList.contains('active')) {
+							item.classList.remove('active')
+						}
+					})
+				
+					document.querySelectorAll('.info-menu__item')[i].classList.add('active')
+				}
 
-	$('.info-menu__item').click(function() {
-		$('.info-menu__item').removeClass('active')
-		$(this).addClass('active');
-		console.log($(this).siblings())
-	})
+			})
+		}) 
+	
+		$('.info-main-header__date time').html(new Date().toLocaleDateString());
+	
+		$('.info-main__item-slider').slick({
+			slidesToShow: 4,
+			slidesToScroll: 4,
+			infinite: false
+		})
+
+		$('.info-main__item-slider').magnificPopup({
+			delegate: 'a',
+			type: 'image',
+			tLoading: 'Загрузка фото #%curr%...',
+			mainClass: 'mfp-img-mobile',
+			gallery: {
+				enabled: true,
+				navigateByImgClick: true,
+			}
+		})
+
+	}
+
+	
 
 })

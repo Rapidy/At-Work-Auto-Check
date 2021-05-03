@@ -114,7 +114,7 @@
     display: flex
     justify-content: center
     position: relative
-    z-index: 1
+    z-index: 1 
     &__item
       border: 1px solid #fff
       padding: 9px 16px
@@ -222,7 +222,7 @@
 .info
   padding: 30px 0
   background: #e7eef669
-  height: 100vh
+  height: 100vh 
   .container
     display: flex
     box-shadow: 0 2px 10px 1px #00000013
@@ -275,7 +275,148 @@
   &-main
     width: 80%  
     background: $light
-    padding: 15px 20px
+    padding: 20px
+    overflow-y: auto
+    &::-webkit-scrollbar
+      width: 7px
+    &::-webkit-scrollbar-thumb
+      background: rgba($report, .15)
+      border-radius: 50px
+    &-header
+      background: $light
+      display: flex
+      justify-content: space-between
+      align-items: center
+      margin-bottom: 30px
+      &__date
+        letter-spacing: .4px
+        color: #777
+        font-size: 17px
+      &__btn
+        border-radius: 50px
+        border: 1px solid $report
+        color: $report
+        padding: 4px 15px  
+        &:hover
+          background: $report
+          color: $light
+          border: 1px solid $report
+        &:active
+          background: $accent
+          border: 1px solid $accent
+    &__item
+      margin-bottom: 50px
+      h1
+        font-size: 36px
+        margin-bottom: 25px
+        font-weight: 700
+        display: flex
+        align-items: center
+        time
+          margin-left: 6px
+        img
+          width: 200px
+          margin-left: auto
+      h2
+        font-size: 24px
+        margin-bottom: 20px
+      &-container
+        display: flex
+        align-items: center
+        &-stats
+          width: 50%
+          &:not(:last-of-type)
+            margin-right: 40px
+          li
+            display: flex
+            justify-content: space-between
+            span
+              // min-width: 50%
+              color: #454545
+            strong
+              font-weight: 600
+        &__photo
+          // width: 50%
+          // position: relative
+          // &:hover
+          //   &:after
+          //     opacity: 1
+          // img
+          //   max-width: 100% 
+          // &::after
+          //   content: '⊕ Увеличить фото'
+          //   display: flex
+          //   justify-content: center
+          //   align-items: center
+          //   color: #fff
+          //   background: rgba($report, .5)
+          //   left: 0
+          //   right: 0
+          //   top: 0
+          //   bottom: 0
+          //   position: absolute
+          //   z-index: 1
+          //   opacity: 0
+          //   transition: .2s
+          //   cursor: pointer
+          // time
+          //   position: absolute
+          //   bottom: 0
+          //   left: 0
+          //   right: 0
+          //   color: #fff 
+          //   z-index: 2 
+          //   padding: 3px 10px
+          //   background: rgba($report, .5)
+      .carNumber
+        padding: 0 20px
+        background: #fff 
+        border: 1px solid #000
+        margin-left: 5px   
+      &-slider
+        .slick-track
+          display: flex
+          align-items: center
+        .slick-slide
+          margin: 0 5px
+        .slick-arrow
+          &:hover
+            width: 35px
+        .slick-next
+          right: 10px
+          background: url('../images/dist/rightarrow.svg') no-repeat center / contain
+          filter: brightness(5)
+          &::before
+            content: ''         
+        .slick-prev
+          z-index: 5
+          left: 10px
+          background: url('../images/dist/leftarrow.svg') no-repeat center / contain
+          filter: brightness(5)
+          &::before
+            content: ''
+        .slick-disabled
+          opacity: .5 
+          &:hover
+            width: 20px       
+        .slick-dots
+          li
+            border: 1px solid lighten($report, 15%)
+            width: 10px
+            height: 10px
+            border-radius: 50%
+            &.slick-active
+              background: lighten($report, 15%)
+            button::before
+              content: ''  
+        a
+          img
+            max-width: 100% 
+
+         
+        
+
+
 
 @import media
 
