@@ -55,21 +55,21 @@
           <div class="info-main__item-container">
 
             <ul class="info-main__item-container-stats">
-              <li><span>VIN:</span> <strong>XTA219070K0562447</strong></li>
-              <li><span>Госномер:</span> <strong>8**МУ9</strong></li>
-              <li><span>Год:</span> <strong>2014</strong></li>
-              <li><span>Цвет:</span> <strong>McLaren Orange</strong></li>
-              <li><span>Модель:</span> <strong>P1</strong></li>
-              <li><span>Рабочий объем (куб.см):</span> <strong> 3799</strong></li>
+              <li><span>VIN:</span> <strong id="mainVin"></strong></li>
+              <li><span>Госномер:</span> <strong id="mainCarNumber">8**МУ9</strong></li>
+              <li><span>Год:</span> <strong id="mainYear">2014</strong></li>
+              <li><span>Цвет:</span> <strong id="mainColor">McLaren Orange</strong></li>
+              <li><span>Модель:</span> <strong id="mainModel">P1</strong></li>
+              <li><span>Рабочий объем (куб.см):</span> <strong id="mainVolume"> 3799</strong></li>
             </ul>
 
             <ul class="info-main__item-container-stats">
-              <li><span>Мощность (л.с.):</span> <strong>697</strong></li>
-              <li><span>Мощность (к.Вт):</span> <strong>132</strong></li>
-              <li><span>Номер двигателя:</span> <strong>67545675</strong></li>
-              <li><span>Номер кузова:</span> <strong>RFA2346464662447</strong></li>
-              <li><span>Категория ТС:</span> <strong>S</strong></li>
-              <li><span>Тип ТС:</span> <strong>Легковой купе</strong></li>
+              <li><span>Мощность (л.с.):</span> <strong  id="mainHorsePower">697</strong></li>
+              <li><span>Мощность (к.Вт):</span> <strong  id="mainElectricPower">132</strong></li>
+              <li><span>Номер двигателя:</span> <strong  id="mainEngineNumber">67545675</strong></li>
+              <li><span>Номер кузова:</span> <strong  id="mainBodyNumber">RFA2346464662447</strong></li>
+              <li><span>Категория ТС:</span> <strong  id="mainCarCatergory">S</strong></li>
+              <li><span>Тип ТС:</span> <strong  id="mainCarType">Легковой купе</strong></li>
             </ul>
 
           </div>
@@ -78,17 +78,9 @@
 
         <section class="info-main__item" id="carPhotos">
 
-          <h2>Фото машин с госномером: <span class="carNumber">8**МУ9</span></h2>
+          <h2>Фото машин с госномером: <span id="carNumber">8**МУ9</span></h2>
 
-          <div class="info-main__item-slider">
-            <a href="images/dist/car.jpg"><img src="images/dist/car.jpg" alt=""></a>
-            <a href="images/dist/car2.jpg"><img src="images/dist/car2.jpg" alt=""></a>
-            <a href="images/dist/car3.jpg"><img src="images/dist/car3.jpg" alt=""></a>
-            <a href="images/dist/car4.jpg"><img src="images/dist/car4.jpg" alt=""></a>
-            <a href="images/dist/car5.jpg"><img src="images/dist/car5.jpg" alt=""></a>
-            <a href="images/dist/car5.jpg"><img src="images/dist/car.jpg" alt=""></a>
-            <a href="images/dist/car5.jpg"><img src="images/dist/car2.jpg" alt=""></a>
-            <a href="images/dist/car5.jpg"><img src="images/dist/car3.jpg" alt=""></a>
+          <div class="info-main__item-slider" id="carPhoto">
           </div>
 
         </section>
@@ -97,71 +89,7 @@
 
           <h2>История регистрации</h2>
 
-          <div class="info-main__item-table">
-
-            <div class="info-main__item-table__item">
-
-              <div class="info-main__item-table__item-container">
-                <h4>Причина регистрации:</h4>
-                <h4>Тип владельца:</h4>
-                <h4>Дата регистрации:</h4>
-                <h4>Дата снятия:</h4>
-              </div>
-
-              <div class="info-main__item-table__item-container">
-                <p>Регистрация ТС,
-                  ввезенных из-за
-                  пределов Российской
-                  Федерации</p>
-                <p>Физическое лицо</p>
-                <p>29.04.2008</p>
-                <p>29.04.2008</p>
-              </div>
-
-            </div>
-
-            <div class="info-main__item-table__item ">
-
-              <div class="info-main__item-table__item-container">
-                <h4>Причина регистрации:</h4>
-                <h4>Тип владельца:</h4>
-                <h4>Дата регистрации:</h4>
-                <h4>Дата снятия:</h4>
-              </div>
-
-              <div class="info-main__item-table__item-container">
-                <p>Регистрация ТС,
-                  ввезенных из-за
-                  пределов Российской
-                  Федерации</p>
-                <p>Физическое лицо</p>
-                <p>29.04.2008</p>
-                <p>29.04.2008</p>
-              </div>
-
-            </div>
-
-            <div class="info-main__item-table__item ">
-
-              <div class="info-main__item-table__item-container">
-                <h4>Причина регистрации:</h4>
-                <h4>Тип владельца:</h4>
-                <h4>Дата регистрации:</h4>
-                <h4>Дата снятия:</h4>
-              </div>
-
-              <div class="info-main__item-table__item-container">
-                <p>Регистрация ТС,
-                  ввезенных из-за
-                  пределов Российской
-                  Федерации</p>
-                <p>Физическое лицо</p>
-                <p>29.04.2008</p>
-                <p>29.04.2008</p>
-              </div>
-
-            </div>
-
+          <div class="info-main__item-table" id="regHistoryList">
           </div>
 
         </section>
@@ -170,46 +98,7 @@
 
           <h2>Проверка розыска</h2>
 
-          <div class="info-main__item-table">
-
-            <div class="info-main__item-table__item ">
-
-              <div class="info-main__item-table__item-container">
-                <h4>Регион инициатора:</h4>
-                <h4>Номер кузова:</h4>
-                <h4>Марка ТС:</h4>
-                <h4>Дата учета:</h4>
-              </div>
-
-              <div class="info-main__item-table__item-container">
-                <p>Республика
-                  Ингушетия</p>
-                <p>—</p>
-                <p>McLaren P1</p>
-                <p>17.10.2018</p>
-              </div>
-
-            </div>
-
-            <div class="info-main__item-table__item ">
-
-              <div class="info-main__item-table__item-container">
-                <h4>Регион инициатора:</h4>
-                <h4>Номер кузова:</h4>
-                <h4>Марка ТС:</h4>
-                <h4>Дата учета:</h4>
-              </div>
-
-              <div class="info-main__item-table__item-container">
-                <p>Республика
-                  Ингушетия</p>
-                <p>—</p>
-                <p>McLaren P1</p>
-                <p>17.10.2018</p>
-              </div>
-
-            </div>
-
+          <div class="info-main__item-table" id="detectiveCheckList">
           </div>
 
         </section>
@@ -218,29 +107,7 @@
 
           <h2>Проверка ограничений</h2>
 
-          <div class="info-main__item-table">
-          
-            <div class="info-main__item-table__item">
-
-              <div class="info-main__item-table__item-container">
-                <li><span>Регион: </span><strong>Краснодарский край</strong></li>
-                <li><span>Ключ ГИБДД: </span><strong>23#SP3123**101</strong></li>
-                <li><span>Дата наложения: </span><strong>10.11.2020 - 10.11.2029</strong></li>
-                <li><span>Вид ограничения: </span><strong>Запрет на регистрационные действия</strong></li>
-                <li><span>Телефон инициатора: </span><strong>+7(861)9**-*4-1*</strong></li>
-                <li><span>Кем наложен: </span><strong>Судебный пристав</strong></li>
-                <li><span>Год ТС: </span><strong>2014</strong></li>
-                <li><span>VIN TC: </span><strong>WBALW31***0C540031</strong></li>
-                <li><span>Модель ТС: </span><strong>McLaren P1</strong></li>
-                <li><span>Номер кузова: </span><strong>spanWBALW31***</strong></li>
-
-                <h5>Основания</h5>
-                <strong>Документ: 14706**623/2388 от 10.11.2020, ****** Дарина *******, СПИ:
-                  38810***802636, ИП: 5820**/20/23088-ИП от 12.10.2020</strong>
-              </div>
-
-            </div>
-
+          <div class="info-main__item-table" id="limitCheckList">
           </div>
 
         </section>
@@ -249,58 +116,7 @@
           
           <h2>Проверка ДТП</h2>
 
-          <div class="info-main__item-table">
-          
-            <div class="info-main__item-table__item ">
-
-              <div class="info-main__item-table__item-container">
-                <li><span>Повреждение: </span><strong>Повреждено</strong></li>
-                <li><span>Номер инцидента: </span><strong>790**1094</strong></li>
-                <li><span>Тип ДТП: </span><strong>Столкновение</strong></li>
-                <li><span>Количество авто: </span><strong>2</strong></li>
-                <li><span>Владелец ТС: </span><strong>ФИЗИЧЕСКИЕ ЛИЦА</strong></li>
-                <li><span>Регион владения: </span><strong>Республика Адыгея</strong></li>
-                <li><span>Место ДТП: </span><strong>Республика Адыгея (Адыгея), Тахтамукайский район</strong></li>
-                <li><span>Дата ДТП: </span><strong>19.03.2018 12:50</strong></li>
-                <li><span>Марка ТС: </span><strong>McLaren</strong></li>
-                <li><span>Модель ТС: </span><strong>P1</strong></li>
-                <li><span>Год ТС: </span><strong>2014</strong></li>
-                <li><span>Описание ДТП: </span><strong>Я двигался в левом ряду по улице Мира на автомобиле Форд
-                  Фокус (госномер е869от777) прямо. При проезде перекрестка, на
-                    пересечении с улицей Мелиораторов, произошло столкновение с
-                    Тойотой Королла, водитель которой выполнял левый поворот из
-                    правого ряда.</strong></li>
-
-                <img src="https://mini.s-shot.ru/450x450/PNG/450/Z100/?https%3A%2F%2Fapi-cloud.ru%2Fapi%2Fdamage_svg.php%3Fdamage%3D110" alt=""> 
-              </div>
-
-            </div>
-
-            <div class="info-main__item-table__item ">
-
-              <div class="info-main__item-table__item-container">
-                <li><span>Повреждение: </span><strong>Повреждено</strong></li>
-                <li><span>Номер инцидента: </span><strong>790**1094</strong></li>
-                <li><span>Тип ДТП: </span><strong>Столкновение</strong></li>
-                <li><span>Количество авто: </span><strong>2</strong></li>
-                <li><span>Владелец ТС: </span><strong>ФИЗИЧЕСКИЕ ЛИЦА</strong></li>
-                <li><span>Регион владения: </span><strong>Республика Адыгея</strong></li>
-                <li><span>Место ДТП: </span><strong>Республика Адыгея (Адыгея), Тахтамукайский район</strong></li>
-                <li><span>Дата ДТП: </span><strong>19.03.2018 12:50</strong></li>
-                <li><span>Марка ТС: </span><strong>McLaren</strong></li>
-                <li><span>Модель ТС: </span><strong>P1</strong></li>
-                <li><span>Год ТС: </span><strong>2014</strong></li>
-                <li><span>Описание ДТП: </span><strong>Я двигался в левом ряду по улице Мира на автомобиле Форд
-                  Фокус (госномер е869от777) прямо. При проезде перекрестка, на
-                    пересечении с улицей Мелиораторов, произошло столкновение с
-                    Тойотой Королла, водитель которой выполнял левый поворот из
-                    правого ряда.</strong></li>
-
-                <img src="https://mini.s-shot.ru/450x450/PNG/450/Z100/?https%3A%2F%2Fapi-cloud.ru%2Fapi%2Fdamage_svg.php%3Fdamage%3D110" alt="">     
-              </div>
-
-            </div>
-
+          <div class="info-main__item-table" id="crashCheckList">
           </div>
 
         </section>
@@ -311,29 +127,7 @@
 
           <div class="info-main__item-table">
           
-            <div class="info-main__item-table__item">
-
-              <div class="info-main__item-table__item-container w100">
-                <li><span>Серия ОСАГО: </span><strong>РРР</strong></li>
-                <li><span>Номер ОСАГО: </span><strong>505****007</strong></li>
-                <li><span>Страховая орг.: </span><strong>ПАО "АСКО-СТРАХОВАНИЕ</strong></li>
-                <li><span>Статус договора: </span><strong>Действует</strong></li>
-                <li><span>Срок действия: </span><strong>Период использования ТС активен на запрашиваемую дату</strong></li>
-                <li><span>Марка и модель ТС: </span><strong>McLaren</strong></li>
-                <li><span>Госномер: </span><strong>С8****3</strong></li>
-                <li><span>VIN номер: </span><strong>VF34*******170236</strong></li>
-                <li><span>Мощность (л.с.): </span><strong>120</strong></li>
-                <li><span>Управление с прицепом: </span><strong>Нет</strong></li>
-                <li><span>Цель использования: </span><strong>Личная</strong></li>
-                <li><span>Допущенные лица: </span><strong>Ограничен список лиц, допущенных к управлению (допущено: 2 чел.)</strong></li>
-                <li><span>Страхователь: </span><strong>К***** Александр ******* *1.03.1**4</strong></li>
-                <li><span>Собственник: </span><strong>К***** Александр ******* *1.03.1**4</strong></li>
-                <li><span>КБМ по договору: </span><strong>0.95</strong></li>
-                <li><span>ТС используется: </span><strong>Краснодарский край, г ********</strong></li>
-                <li><span>Страховая премия: </span><strong>9***.96 руб</strong></li>
-                <li><span>Дата актуальности: </span><strong>22.11.2019</strong></li>
-              </div>
-
+            <div class="info-main__item-table__item" id="osagoCheckList">              
             </div>
 
           </div>
