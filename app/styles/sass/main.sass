@@ -268,10 +268,7 @@
         &:hover
           background: $light           
       &:hover
-        background: $accent
-      // &:active
-      //   background: $light
-      //   color: $report  
+        background: $accent 
   &-main
     width: 80%  
     background: $light
@@ -331,43 +328,7 @@
             display: flex
             justify-content: space-between
             span
-              // min-width: 50%
               color: #454545
-            strong
-              font-weight: 600
-        &__photo
-          // width: 50%
-          // position: relative
-          // &:hover
-          //   &:after
-          //     opacity: 1
-          // img
-          //   max-width: 100% 
-          // &::after
-          //   content: '⊕ Увеличить фото'
-          //   display: flex
-          //   justify-content: center
-          //   align-items: center
-          //   color: #fff
-          //   background: rgba($report, .5)
-          //   left: 0
-          //   right: 0
-          //   top: 0
-          //   bottom: 0
-          //   position: absolute
-          //   z-index: 1
-          //   opacity: 0
-          //   transition: .2s
-          //   cursor: pointer
-          // time
-          //   position: absolute
-          //   bottom: 0
-          //   left: 0
-          //   right: 0
-          //   color: #fff 
-          //   z-index: 2 
-          //   padding: 3px 10px
-          //   background: rgba($report, .5)
       .carNumber
         padding: 0 20px
         background: #fff 
@@ -412,7 +373,42 @@
         a
           img
             max-width: 100% 
+      &-table
+        &__item
+          display: flex     
+          padding: 15px
+          border: 1px dashed rgba($report, .35)
+          &:not(:last-of-type)
+            margin-bottom: 15px
+          &-container
+            &.w100
+              width: 100%
+            img
+              display: block
+              width: 40%
+              margin: 25px auto 0
+            li
+              display: flex
+              span
+                min-width: 24%
+              strong
+                display: initial
+                text-align: left 
+                padding: initial 
+            h5
+              margin-top: 25px
+              text-align: center
+              font-weight: 400
+              font-size: 16px
+            strong
+              display: block
+              text-align: center
+              padding: 0 50px
+            &:not(:last-of-type)
+              margin-right: 30px
 
+
+            
          
         
 

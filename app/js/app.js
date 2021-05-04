@@ -65,18 +65,18 @@ document.addEventListener('DOMContentLoaded', () => {
 	} else {
 
 		$('.info-menu__item').click(function(e) {
-			e.preventDefault();
+			// e.preventDefault();
 
 			if($(this).hasClass('active')) {
 				return
 			}
 
-			$('.info-menu__item').removeClass('active')
-			$(this).addClass('active')
+			// $('.info-menu__item').removeClass('active')
+			// $(this).addClass('active')
 	
-			const id = $(this).attr('href'),
-						top = $(id).offset().top - 30;
-			$('.info-main').animate({scrollTop: top}, 500)
+			// const id = $(this).attr('href'),
+			// 			top = $(id).offset().top - 30;
+			// $('.info-main').animate({scrollTop: top}, 500)
 		})
 
 		document.querySelector('.info-main').addEventListener('scroll', function() {
