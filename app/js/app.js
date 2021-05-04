@@ -5,6 +5,7 @@ window.$ = $
 
 import magnificPopup from 'magnific-popup'
 import slick from 'slick-carousel'
+import scrollTo from 'jquery.scrollto'
 
 // // Import vendor jQuery plugin example (not module)
 require('../libs/jquery.waterwheelCarousel.min.js')
@@ -249,23 +250,22 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 
 		$('.info-menu__item').click(function(e) {
-			// e.preventDefault();
+			e.preventDefault();
 
-			if($(this).hasClass('active')) {
-				return
-			}
+			// if($(this).hasClass('active')) {
+			// 	return
+			// }
 
 			// $('.info-menu__item').removeClass('active')
 			// $(this).addClass('active')
 	
-			// const id = $(this).attr('href'),
-			// 			top = $(id).offset().top - 30;
-			// $('.info-main').animate({scrollTop: top}, 500)
+			const id = $(this).attr('href');
+			$('.info-main').scrollTo(id, 500, {'offset': -10})
 		})
 
 		document.querySelector('.info-main').addEventListener('scroll', function() {
 			const scrollDistance = this.scrollTop + 50;
-			
+
 			document.querySelectorAll('.info-main__item').forEach(function(item, i) {
 
 				if(item.offsetTop <= scrollDistance) {
@@ -282,8 +282,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}) 
 	
 		$('.info-main-header__date time').html(new Date().toLocaleDateString());
-	
-		
 
 		$('.info-main__item-slider').magnificPopup({
 			delegate: 'a',
