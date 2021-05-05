@@ -223,32 +223,31 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 
 			//pledgeCheck
-			if(avto.policy.length) {
-				avto.policy.map( (item) => {
-					$('#osagoCheckList').append(`
-						<div class="info-main__item-table__item">		
-						
+			if(avto.deposit.num) {
+				let pledgees = '',
+					pledgors = '';
+
+				avto.deposit.rez.map( (item) => {
+
+					//Залогодержатели
+					item.pledgees.map( (gees) => {
+						pledgees = pledgees + gees.name + '<br>';
+					});
+
+					//Залогодатели
+					item.pledgors.map( (gors) => {
+						pledgors = pledgors + gors.name + '<br>';
+					});
+
+					$('#pledgeCheckList').append(`
+						<div class="info-main__item-table__item">
+								
 							<div class="info-main__item-table__item-container">
-								<li><span>Серия ОСАГО: </span><strong>${item.seria}</strong></li>
-								<li><span>Номер ОСАГО: </span><strong>${item.nomer}</strong></li>
-								<li><span>Страховая орг.: </span><strong>${item.orgosago}</strong></li>
-								<li><span>Статус договора: </span><strong>${item.status}</strong></li>
-								<li><span>Срок действия: </span><strong>${item.term}</strong></li>
-								<li><span>Марка и модель ТС: </span><strong>${item.brandmodel}</strong></li>
-								<li><span>Госномер: </span><strong>${item.regnum}</strong></li>
-								<li><span>VIN номер: </span><strong>${VIN}</strong></li>
-								<li><span>Мощность (л.с.): </span><strong>${item.power}</strong></li>
-								<li><span>Управление с прицепом: </span><strong>${item.trailer}</strong></li>
-								<li><span>Цель использования: </span><strong>${item.cel}</strong></li>
-								<li><span>Допущенные лица: </span><strong>${item.ogran}</strong></li>
-								<li><span>Страхователь: </span><strong>${item.insured}</strong></li>
-								<li><span>Собственник: </span><strong>${item.owner}</strong></li>
-								<li><span>КБМ по договору: </span><strong>${item.kbm}</strong></li>
-								<li><span>ТС используется: </span><strong>${item.region}</strong></li>
-								<li><span>Страховая премия: </span><strong>${item.strahsum}</strong></li>
-								<li><span>Дата актуальности: </span><strong>${item.dateactual}</strong></li>
+								<li><span>Дата: </span><strong>${item.regDate}</strong></li>
+								<li><span>Залогодатели: </span><strong>${pledgors}</strong></li>
+								<li><span>Залогодержатели: </span><strong>${pledgees}</strong></li>
 							</div>
-							
+
 						</div>	
 					`);
 				});
