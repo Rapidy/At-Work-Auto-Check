@@ -12,8 +12,6 @@ require('../libs/jquery.waterwheelCarousel.min.js')
 
 document.addEventListener('DOMContentLoaded', () => {
 
-	$('img').attr('draggable','false');
-
 	if($('main').is('.main')) {
 
 		$('.checklist-nav__item').mouseenter(function() {
@@ -316,5 +314,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		})
 		
 	}
+
+	setTimeout(function() {
+		$('img').attr('draggable','false')
+	}, 1000)	
 
 })
