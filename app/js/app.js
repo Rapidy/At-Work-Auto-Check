@@ -105,44 +105,31 @@ document.addEventListener('DOMContentLoaded', () => {
 			//regHistory
 			if(avto.mainInfo.ownershipPeriod.length) {
 				avto.mainInfo.ownershipPeriod.map( (item) => {
-					$('#regHistoryList').append(`<div class="info-main__item-table__item">
+					$('#regHistoryList').append(`
+						<div class="info-main__item-table__item">
 
-					<div class="info-main__item-table__item-container">
-					  <h4>Причина регистрации:</h4>
-					  <h4>Тип владельца:</h4>
-					  <h4>Дата регистрации:</h4>
-					  <h4>Дата снятия:</h4>
-					</div>
-	  
-					<div class="info-main__item-table__item-container">
-					  <p>${item.lastOperationInfo}</p>
-					  <p>${item.simplePersonTypeInfo}</p>
-					  <p>${item.from}</p>
-					  <p>${item.to}</p>
-					</div>
-	  
-					</div>`);
+							<div class="info-main__item-table__item-container">
+								<li><span>Причина регистрации: </span><strong>${item.lastOperationInfo}</strong></li>
+								<li><span>Тип владельца: </span><strong>${item.simplePersonTypeInfo}</strong></li>
+								<li><span>Дата регистрации: </span><strong>${item.from}</strong></li>
+								<li><span>Дата снятия: </span><strong>${item.to}</strong></li>
+							</div>
+			
+						</div>`);
 				});
 			}
 
 			//detectiveCheck
 			if(avto.wanted.count) {
 				avto.wanted.records.map( (item) => {
-					$('#detectiveCheckList').append(`<div class="info-main__item-table__item ">
-						<div class="info-main__item-table__item-container">
-							<h4>Регион инициатора:</h4>
-							<h4>Номер кузова:</h4>
-							<h4>Марка ТС:</h4>
-							<h4>Дата учета:</h4>
-						</div>
-		
-						<div class="info-main__item-table__item-container">
-							<p>${item.w_reg_inic}</p>
-							<p>${item.w_kuzov}</p>
-							<p>${item.w_model}</p>
-							<p>${item.w_data_pu}</p>
-						</div>
-		
+					$('#detectiveCheckList').append(`
+						<div class="info-main__item-table__item ">
+							<div class="info-main__item-table__item-container">
+								<li><span>Регион инициатора:</span> <strong>${item.w_reg_inic}</strong></li>
+								<li><span>Номер кузова:</span> <strong>${item.w_kuzov}</strong></li>
+								<li><span>Марка ТС:</span> <strong>${item.w_model}</strong></li>
+								<li><span>Дата учета:</span> <strong>${item.w_data_pu}</strong></li>
+							</div>
 						</div>
 	  				`);
 				});
@@ -181,22 +168,22 @@ document.addEventListener('DOMContentLoaded', () => {
 					$('#crashCheckList').append(`
 						<div class="info-main__item-table__item ">
 
-						<div class="info-main__item-table__item-container w100">
-						<li><span>Повреждение: </span><strong>${item.VehicleDamageState}</strong></li>
-						<li><span>Номер инцидента: </span><strong>${item.AccidentNumber}</strong></li>
-						<li><span>Тип ДТП: </span><strong>${item.AccidentType}</strong></li>
-						<li><span>Количество авто: </span><strong>${item.VehicleAmount}</strong></li>
-						<li><span>Владелец ТС: </span><strong>${item.OwnerOkopf}</strong></li>
-						<li><span>Регион владения: </span><strong>${item.RegionName}</strong></li>
-						<li><span>Место ДТП: </span><strong>${item.AccidentPlace}</strong></li>
-						<li><span>Дата ДТП: </span><strong>${item.AccidentDateTime}</strong></li>
-						<li><span>Марка ТС: </span><strong>${item.VehicleMark}</strong></li>
-						<li><span>Модель ТС: </span><strong>${item.VehicleModel}</strong></li>
-						<li><span>Год ТС: </span><strong>${item.VehicleYear}</strong></li>
-						<li><span>Описание ДТП: </span><strong>${item.DamageDestription}</strong></li>
-		
-						<img src="https://mini.s-shot.ru/450x450/PNG/450/Z100/?${encodeURIComponent(item.DamagePointsSVG)}" alt=""> 
-						</div>
+							<div class="info-main__item-table__item-container">
+								<li><span>Повреждение: </span><strong>${item.VehicleDamageState}</strong></li>
+								<li><span>Номер инцидента: </span><strong>${item.AccidentNumber}</strong></li>
+								<li><span>Тип ДТП: </span><strong>${item.AccidentType}</strong></li>
+								<li><span>Количество авто: </span><strong>${item.VehicleAmount}</strong></li>
+								<li><span>Владелец ТС: </span><strong>${item.OwnerOkopf}</strong></li>
+								<li><span>Регион владения: </span><strong>${item.RegionName}</strong></li>
+								<li><span>Место ДТП: </span><strong>${item.AccidentPlace}</strong></li>
+								<li><span>Дата ДТП: </span><strong>${item.AccidentDateTime}</strong></li>
+								<li><span>Марка ТС: </span><strong>${item.VehicleMark}</strong></li>
+								<li><span>Модель ТС: </span><strong>${item.VehicleModel}</strong></li>
+								<li><span>Год ТС: </span><strong>${item.VehicleYear}</strong></li>
+								<li><span>Описание ДТП: </span><strong>${item.DamageDestription}</strong></li>
+				
+								<img src="https://mini.s-shot.ru/450x450/PNG/450/Z100/?${encodeURIComponent(item.DamagePointsSVG)}" alt=""> 
+							</div>
 		
 						</div>
 					`);
@@ -207,29 +194,66 @@ document.addEventListener('DOMContentLoaded', () => {
 			if(avto.policy.length) {
 				avto.policy.map( (item) => {
 					$('#osagoCheckList').append(`
-						<div class="info-main__item-table__item-container w100">
-							<li><span>Серия ОСАГО: </span><strong>${item.seria}</strong></li>
-							<li><span>Номер ОСАГО: </span><strong>${item.nomer}</strong></li>
-							<li><span>Страховая орг.: </span><strong>${item.orgosago}</strong></li>
-							<li><span>Статус договора: </span><strong>${item.status}</strong></li>
-							<li><span>Срок действия: </span><strong>${item.term}</strong></li>
-							<li><span>Марка и модель ТС: </span><strong>${item.brandmodel}</strong></li>
-							<li><span>Госномер: </span><strong>${item.regnum}</strong></li>
-							<li><span>VIN номер: </span><strong>${VIN}</strong></li>
-							<li><span>Мощность (л.с.): </span><strong>${item.power}</strong></li>
-							<li><span>Управление с прицепом: </span><strong>${item.trailer}</strong></li>
-							<li><span>Цель использования: </span><strong>${item.cel}</strong></li>
-							<li><span>Допущенные лица: </span><strong>${item.ogran}</strong></li>
-							<li><span>Страхователь: </span><strong>${item.insured}</strong></li>
-							<li><span>Собственник: </span><strong>${item.owner}</strong></li>
-							<li><span>КБМ по договору: </span><strong>${item.kbm}</strong></li>
-							<li><span>ТС используется: </span><strong>${item.region}</strong></li>
-							<li><span>Страховая премия: </span><strong>${item.strahsum}</strong></li>
-							<li><span>Дата актуальности: </span><strong>${item.dateactual}</strong></li>
-						</div>
+						<div class="info-main__item-table__item">		
+						
+							<div class="info-main__item-table__item-container">
+								<li><span>Серия ОСАГО: </span><strong>${item.seria}</strong></li>
+								<li><span>Номер ОСАГО: </span><strong>${item.nomer}</strong></li>
+								<li><span>Страховая орг.: </span><strong>${item.orgosago}</strong></li>
+								<li><span>Статус договора: </span><strong>${item.status}</strong></li>
+								<li><span>Срок действия: </span><strong>${item.term}</strong></li>
+								<li><span>Марка и модель ТС: </span><strong>${item.brandmodel}</strong></li>
+								<li><span>Госномер: </span><strong>${item.regnum}</strong></li>
+								<li><span>VIN номер: </span><strong>${VIN}</strong></li>
+								<li><span>Мощность (л.с.): </span><strong>${item.power}</strong></li>
+								<li><span>Управление с прицепом: </span><strong>${item.trailer}</strong></li>
+								<li><span>Цель использования: </span><strong>${item.cel}</strong></li>
+								<li><span>Допущенные лица: </span><strong>${item.ogran}</strong></li>
+								<li><span>Страхователь: </span><strong>${item.insured}</strong></li>
+								<li><span>Собственник: </span><strong>${item.owner}</strong></li>
+								<li><span>КБМ по договору: </span><strong>${item.kbm}</strong></li>
+								<li><span>ТС используется: </span><strong>${item.region}</strong></li>
+								<li><span>Страховая премия: </span><strong>${item.strahsum}</strong></li>
+								<li><span>Дата актуальности: </span><strong>${item.dateactual}</strong></li>
+							</div>
+
+						</div>	
 					`);
 				});
 			}
+
+			//pledgeCheck
+			if(avto.policy.length) {
+				avto.policy.map( (item) => {
+					$('#osagoCheckList').append(`
+						<div class="info-main__item-table__item">		
+						
+							<div class="info-main__item-table__item-container">
+								<li><span>Серия ОСАГО: </span><strong>${item.seria}</strong></li>
+								<li><span>Номер ОСАГО: </span><strong>${item.nomer}</strong></li>
+								<li><span>Страховая орг.: </span><strong>${item.orgosago}</strong></li>
+								<li><span>Статус договора: </span><strong>${item.status}</strong></li>
+								<li><span>Срок действия: </span><strong>${item.term}</strong></li>
+								<li><span>Марка и модель ТС: </span><strong>${item.brandmodel}</strong></li>
+								<li><span>Госномер: </span><strong>${item.regnum}</strong></li>
+								<li><span>VIN номер: </span><strong>${VIN}</strong></li>
+								<li><span>Мощность (л.с.): </span><strong>${item.power}</strong></li>
+								<li><span>Управление с прицепом: </span><strong>${item.trailer}</strong></li>
+								<li><span>Цель использования: </span><strong>${item.cel}</strong></li>
+								<li><span>Допущенные лица: </span><strong>${item.ogran}</strong></li>
+								<li><span>Страхователь: </span><strong>${item.insured}</strong></li>
+								<li><span>Собственник: </span><strong>${item.owner}</strong></li>
+								<li><span>КБМ по договору: </span><strong>${item.kbm}</strong></li>
+								<li><span>ТС используется: </span><strong>${item.region}</strong></li>
+								<li><span>Страховая премия: </span><strong>${item.strahsum}</strong></li>
+								<li><span>Дата актуальности: </span><strong>${item.dateactual}</strong></li>
+							</div>
+							
+						</div>	
+					`);
+				});
+			}
+
 		}
 
 		$.ajax({
@@ -252,12 +276,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		$('.info-menu__item').click(function(e) {
 			e.preventDefault();
 
-			// if($(this).hasClass('active')) {
-			// 	return
-			// }
-
-			// $('.info-menu__item').removeClass('active')
-			// $(this).addClass('active')
+			if($(this).hasClass('active')) {
+				return
+			}
 	
 			const id = $(this).attr('href');
 			$('.info-main').scrollTo(id, 500, {'offset': -10})
