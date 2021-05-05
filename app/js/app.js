@@ -390,22 +390,26 @@ document.addEventListener('DOMContentLoaded', () => {
 					infinite: false
 				})
 
+				$('.preloader').hide()
+
 				resAvto = data;
 			}   
 		});
 
 		function downloadPDF(name) {
-			var link = document.createElement('a');
+			let link = document.createElement('a');
 			link.setAttribute('href', 'backend/' + name);
 			link.setAttribute('download', name);
 			link.click();
 			link.remove();
+			$('.preloader').hide()
 		}
 
 		//download report 
 		$('.info-main-header__btn').click(function(e) {
 			e.preventDefault();
 			console.log(resAvto)
+			$('.preloader').show()
 			$.ajax({
 				type: "POST",
 				url: 'backend/reportPDF.php',
