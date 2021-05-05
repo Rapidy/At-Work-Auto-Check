@@ -251,6 +251,54 @@ document.addEventListener('DOMContentLoaded', () => {
 				});
 			}
 
+			//leasingCheck
+			if(avto.leasing.length) {
+				avto.leasing.map( (item) => {
+					$('#osagoCheckList').append(`
+						<div class="info-main__item-table__item">		
+						
+							<div class="info-main__item-table__item-container">
+								<li><span>Информация: </span><strong>${item.seria}</strong></li>
+							</div>
+
+						</div>	
+					`);
+				});
+			}
+
+			//taxiCheck
+			if(avto.taxi.length) {
+				avto.taxi.map( (item) => {
+					$('#osagoCheckList').append(`
+						<div class="info-main__item-table__item">		
+						
+							<div class="info-main__item-table__item-container">
+								<li><span>Информация: </span><strong>${item.seria}</strong></li>
+							</div>
+
+						</div>	
+					`);
+				});
+			}
+
+			//mileageCheck
+			if(avto.mileage.length) {
+				avto.mileage.map( (item) => {
+					$('#osagoCheckList').append(`
+						<div class="info-main__item-table__item">		
+						
+							<div class="info-main__item-table__item-container">
+								<li><span>Информация: </span><strong>${item.seria}</strong></li>
+								<li><span>Информация: </span><strong>${item.seria}</strong></li>
+								<li><span>Информация: </span><strong>${item.seria}</strong></li>
+								<li><span>Информация: </span><strong>${item.seria}</strong></li>
+							</div>
+
+						</div>	
+					`);
+				});
+			}
+
 		}
 
 		$.ajax({
