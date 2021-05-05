@@ -21,6 +21,10 @@
 
 <body>
 
+  <div class="preloader">
+    <img src="images/dist/preloader.gif" alt="">
+  </div>
+
   <main class="info" id="info">
     <div class="container">
 
@@ -49,8 +53,7 @@
 
         <section class="info-main__item" id="generalInfo">
 
-          <h1><span id="carName">McLaren P1</span>,<time id="carYear">2014</time> <img src="images/dist/car-logo.png"
-              alt=""></h1>
+          <h1><span id="carName"></span>,<time id="carYear"></time></h1>
 
           <div class="info-main__item-container">
 
@@ -141,12 +144,16 @@
 
         <section class="info-main__item" id="leasingCheck">
 
+          <h2>Проверка на лизинг</h2>
+
           <div class="info-main__item-table" id="leasingCheckList">
           </div>
 
         </section>
 
         <section class="info-main__item" id="taxiCheck">
+
+          <h2>Проверка такси</h2>
 
           <div class="info-main__item-table" id="taxiCheckList">
           </div>
@@ -155,7 +162,14 @@
 
         <section class="info-main__item" id="mileageCheck">
 
+          <h2>Проверка пробега</h2>
+
           <div class="info-main__item-table" id="mileageCheckList">
+          </div>
+          
+          <h3>Прошлые показания пробега</h3>
+
+          <div class="info-main__item-table" id="mileagePastCheckList">
           </div>
 
         </section>

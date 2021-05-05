@@ -1,5 +1,17 @@
 @import config
 
+.preloader
+  position: fixed
+  left: 0
+  right: 0 
+  bottom: 0
+  top: 0
+  z-index: 100
+  justify-content: center
+  align-items: center
+  display: none
+  background: $light
+
 .main
   margin-top: 65px
   &-headers
@@ -317,6 +329,11 @@
       h2
         font-size: 24px
         margin-bottom: 20px
+      h3
+        margin: 
+          top: 10px
+          bottom: 10px
+        font-weight: normal
       &-container
         display: flex
         align-items: center
@@ -369,6 +386,7 @@
           img
             max-width: 100% 
       &-table
+
         &__item
           display: flex     
           padding: 15px

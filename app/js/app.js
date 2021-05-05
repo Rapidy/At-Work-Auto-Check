@@ -60,12 +60,23 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 			hint.toggleClass('show')
 		})	
+
+		//save VIN 
+		$('.main-check__btn').click(function(e) {
+			e.preventDefault();
+			let vin_input = $('.checkInput').val();
+
+			if(vin_input != '' && vin_input.length == 17) {
+				localStorage.setItem('vin', vin_input);
+				document.location.href = "report.html";
+			}
+		})
 		
 	} else {
 
 		// api/func
 		function voidReplace(text) {
-			if(text == "")
+			if(text == "" || text == null || text == "null")
 				return '----';
 			else
 				return text;
@@ -73,22 +84,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 		function infoLoading(avto) {
 			//main var 
-			const VIN = avto.vin;
+			const VIN = avto.VIN;
 			const regNum = avto.regNum;
+
+			//header info 
+			$('#carName').text(avto.mainInfo.vehicle.model);
+			$('#carYear').text(avto.mainInfo.vehicle.year);
 
 			//main info 
 			$('#mainVin').text(VIN);
 			$('#mainCarNumber').text(regNum);
-			$('#mainYear').text(avto.mainInfo.vehicle.year);
-			$('#mainColor').text(avto.mainInfo.vehicle.color);
-			$('#mainModel').text(avto.mainInfo.vehicle.model);
-			$('#mainVolume').text(avto.mainInfo.vehicle.engineVolume);
-			$('#mainHorsePower').text(avto.mainInfo.vehicle.powerHp);
-			$('#mainElectricPower').text(avto.mainInfo.vehicle.powerKwt);
-			$('#mainEngineNumber').text(avto.mainInfo.vehicle.engineNumber);
-			$('#mainBodyNumber').text(avto.mainInfo.vehicle.bodyNumber);
-			$('#mainCarCatergory').text(avto.mainInfo.vehicle.category);
-			$('#mainCarType').text(avto.mainInfo.vehicle.typeinfo);
+			$('#mainYear').text(voidReplace(avto.mainInfo.vehicle.year));
+			$('#mainColor').text(voidReplace(avto.mainInfo.vehicle.color));
+			$('#mainModel').text(voidReplace(avto.mainInfo.vehicle.model));
+			$('#mainVolume').text(voidReplace(avto.mainInfo.vehicle.engineVolume));
+			$('#mainHorsePower').text(voidReplace(avto.mainInfo.vehicle.powerHp));
+			$('#mainElectricPower').text(voidReplace(avto.mainInfo.vehicle.powerKwt));
+			$('#mainEngineNumber').text(voidReplace(avto.mainInfo.vehicle.engineNumber));
+			$('#mainBodyNumber').text(voidReplace(avto.mainInfo.vehicle.bodyNumber));
+			$('#mainCarCatergory').text(voidReplace(avto.mainInfo.vehicle.category));
+			$('#mainCarType').text(voidReplace(avto.mainInfo.vehicle.typeinfo));
 
 			//slider number
 			$('#carNumber').text(regNum);
@@ -107,14 +122,17 @@ document.addEventListener('DOMContentLoaded', () => {
 						<div class="info-main__item-table__item">
 
 							<div class="info-main__item-table__item-container">
-								<li><span>Причина регистрации: </span><strong>${item.lastOperationInfo}</strong></li>
-								<li><span>Тип владельца: </span><strong>${item.simplePersonTypeInfo}</strong></li>
-								<li><span>Дата регистрации: </span><strong>${item.from}</strong></li>
-								<li><span>Дата снятия: </span><strong>${item.to}</strong></li>
+								<li><span>Причина регистрации: </span><strong>${voidReplace(item.lastOperationInfo)}</strong></li>
+								<li><span>Тип владельца: </span><strong>${voidReplace(item.simplePersonTypeInfo)}</strong></li>
+								<li><span>Дата регистрации: </span><strong>${voidReplace(item.from)}</strong></li>
+								<li><span>Дата снятия: </span><strong>${voidReplace(item.to)}</strong></li>
 							</div>
 			
-						</div>`);
+						</div>
+					`);
 				});
+			} else {
+				$('#regHistoryList').append(`<h3>История регистрации отсутвует</h3>`);
 			}
 
 			//detectiveCheck
@@ -123,14 +141,16 @@ document.addEventListener('DOMContentLoaded', () => {
 					$('#detectiveCheckList').append(`
 						<div class="info-main__item-table__item ">
 							<div class="info-main__item-table__item-container">
-								<li><span>Регион инициатора:</span> <strong>${item.w_reg_inic}</strong></li>
-								<li><span>Номер кузова:</span> <strong>${item.w_kuzov}</strong></li>
-								<li><span>Марка ТС:</span> <strong>${item.w_model}</strong></li>
-								<li><span>Дата учета:</span> <strong>${item.w_data_pu}</strong></li>
+								<li><span>Регион инициатора:</span> <strong>${voidReplace(item.w_reg_inic)}</strong></li>
+								<li><span>Номер кузова:</span> <strong>${voidReplace(item.w_kuzov)}</strong></li>
+								<li><span>Марка ТС:</span> <strong>${voidReplace(item.w_model)}</strong></li>
+								<li><span>Дата учета:</span> <strong>${voidReplace(item.w_data_pu)}</strong></li>
 							</div>
 						</div>
 	  				`);
 				});
+			} else {
+				$('#detectiveCheckList').append(`<h3>ТС в ррозыске не найдена</h3>`);
 			}
 
 			//limitCheck
@@ -140,24 +160,26 @@ document.addEventListener('DOMContentLoaded', () => {
 						<div class="info-main__item-table__item">
 
 						<div class="info-main__item-table__item-container">
-						<li><span>Регион: </span><strong>${item.regname}</strong></li>
-						<li><span>Ключ ГИБДД: </span><strong>${item.gid}</strong></li>
-						<li><span>Дата наложения: </span><strong>${item.dateogr} - ${item.dateadd}</strong></li>
-						<li><span>Вид ограничения: </span><strong>${item.ogrkodinfo}</strong></li>
-						<li><span>Телефон инициатора: </span><strong>${item.phone}</strong></li>
-						<li><span>Кем наложен: </span><strong>${item.divtypeinfo}</strong></li>
-						<li><span>Год ТС: </span><strong>${item.tsyear}</strong></li>
+						<li><span>Регион: </span><strong>${voidReplace(item.regname)}</strong></li>
+						<li><span>Ключ ГИБДД: </span><strong>${voidReplace(item.gid)}</strong></li>
+						<li><span>Дата наложения: </span><strong>${voidReplace(item.dateogr)} - ${voidReplace(item.dateadd)}</strong></li>
+						<li><span>Вид ограничения: </span><strong>${voidReplace(item.ogrkodinfo)}</strong></li>
+						<li><span>Телефон инициатора: </span><strong>${voidReplace(item.phone)}</strong></li>
+						<li><span>Кем наложен: </span><strong>${voidReplace(item.divtypeinfo)}</strong></li>
+						<li><span>Год ТС: </span><strong>${voidReplace(item.tsyear)}</strong></li>
 						<li><span>VIN TC: </span><strong>${VIN}</strong></li>
-						<li><span>Модель ТС: </span><strong>${item.tsmodel}</strong></li>
-						<li><span>Номер кузова: </span><strong>${item.tsKuzov}</strong></li>
+						<li><span>Модель ТС: </span><strong>${voidReplace(item.tsmodel)}</strong></li>
+						<li><span>Номер кузова: </span><strong>${voidReplace(item.tsKuzov)}</strong></li>
 		
 						<h5>Основания</h5>
-						<strong>${item.osnOgr}</strong>
+						<strong>${voidReplace(item.osnOgr)}</strong>
 						</div>
 		
 						</div>
 					`);
 				})
+			} else {
+				$('#limitCheckList').append(`<h3>Ограничения ТС не найдены</h3>`);
 			}
 
 			//crashCheck
@@ -167,18 +189,18 @@ document.addEventListener('DOMContentLoaded', () => {
 						<div class="info-main__item-table__item ">
 
 							<div class="info-main__item-table__item-container">
-								<li><span>Повреждение: </span><strong>${item.VehicleDamageState}</strong></li>
-								<li><span>Номер инцидента: </span><strong>${item.AccidentNumber}</strong></li>
-								<li><span>Тип ДТП: </span><strong>${item.AccidentType}</strong></li>
-								<li><span>Количество авто: </span><strong>${item.VehicleAmount}</strong></li>
-								<li><span>Владелец ТС: </span><strong>${item.OwnerOkopf}</strong></li>
-								<li><span>Регион владения: </span><strong>${item.RegionName}</strong></li>
-								<li><span>Место ДТП: </span><strong>${item.AccidentPlace}</strong></li>
-								<li><span>Дата ДТП: </span><strong>${item.AccidentDateTime}</strong></li>
-								<li><span>Марка ТС: </span><strong>${item.VehicleMark}</strong></li>
-								<li><span>Модель ТС: </span><strong>${item.VehicleModel}</strong></li>
-								<li><span>Год ТС: </span><strong>${item.VehicleYear}</strong></li>
-								<li><span>Описание ДТП: </span><strong>${item.DamageDestription}</strong></li>
+								<li><span>Повреждение: </span><strong>${voidReplace(item.VehicleDamageState)}</strong></li>
+								<li><span>Номер инцидента: </span><strong>${voidReplace(item.AccidentNumber)}</strong></li>
+								<li><span>Тип ДТП: </span><strong>${voidReplace(item.AccidentType)}</strong></li>
+								<li><span>Количество авто: </span><strong>${voidReplace(item.VehicleAmount)}</strong></li>
+								<li><span>Владелец ТС: </span><strong>${voidReplace(item.OwnerOkopf)}</strong></li>
+								<li><span>Регион владения: </span><strong>${voidReplace(item.RegionName)}</strong></li>
+								<li><span>Место ДТП: </span><strong>${voidReplace(item.AccidentPlace)}</strong></li>
+								<li><span>Дата ДТП: </span><strong>${voidReplace(item.AccidentDateTime)}</strong></li>
+								<li><span>Марка ТС: </span><strong>${voidReplace(item.VehicleMark)}</strong></li>
+								<li><span>Модель ТС: </span><strong>${voidReplace(item.VehicleModel)}</strong></li>
+								<li><span>Год ТС: </span><strong>${voidReplace(item.VehicleYear)}</strong></li>
+								<li><span>Описание ДТП: </span><strong>${voidReplace(item.DamageDestription)}</strong></li>
 				
 								<img src="https://mini.s-shot.ru/450x450/PNG/450/Z100/?${encodeURIComponent(item.DamagePointsSVG)}" alt=""> 
 							</div>
@@ -186,38 +208,43 @@ document.addEventListener('DOMContentLoaded', () => {
 						</div>
 					`);
 				});
+			} else {
+				$('#crashCheckList').append(`<h3>ДТП не найдены</h3>`);
 			}
 
 			//osagoCheck
 			if(avto.policy.length) {
 				avto.policy.map( (item) => {
+					console.log(item)
 					$('#osagoCheckList').append(`
 						<div class="info-main__item-table__item">		
 						
 							<div class="info-main__item-table__item-container">
-								<li><span>Серия ОСАГО: </span><strong>${item.seria}</strong></li>
-								<li><span>Номер ОСАГО: </span><strong>${item.nomer}</strong></li>
-								<li><span>Страховая орг.: </span><strong>${item.orgosago}</strong></li>
-								<li><span>Статус договора: </span><strong>${item.status}</strong></li>
-								<li><span>Срок действия: </span><strong>${item.term}</strong></li>
-								<li><span>Марка и модель ТС: </span><strong>${item.brandmodel}</strong></li>
-								<li><span>Госномер: </span><strong>${item.regnum}</strong></li>
+								<li><span>Серия ОСАГО: </span><strong>${voidReplace(item.seria)}</strong></li>
+								<li><span>Номер ОСАГО: </span><strong>${voidReplace(item.nomer)}</strong></li>
+								<li><span>Страховая орг.: </span><strong>${voidReplace(item.orgosago)}</strong></li>
+								<li><span>Статус договора: </span><strong>${voidReplace(item.status)}</strong></li>
+								<li><span>Срок действия: </span><strong>${voidReplace(item.term)}</strong></li>
+								<li><span>Марка и модель ТС: </span><strong>${voidReplace(item.brandmodel)}</strong></li>
+								<li><span>Госномер: </span><strong>${voidReplace(item.regnum)}</strong></li>
 								<li><span>VIN номер: </span><strong>${VIN}</strong></li>
-								<li><span>Мощность (л.с.): </span><strong>${item.power}</strong></li>
-								<li><span>Управление с прицепом: </span><strong>${item.trailer}</strong></li>
-								<li><span>Цель использования: </span><strong>${item.cel}</strong></li>
-								<li><span>Допущенные лица: </span><strong>${item.ogran}</strong></li>
-								<li><span>Страхователь: </span><strong>${item.insured}</strong></li>
-								<li><span>Собственник: </span><strong>${item.owner}</strong></li>
-								<li><span>КБМ по договору: </span><strong>${item.kbm}</strong></li>
-								<li><span>ТС используется: </span><strong>${item.region}</strong></li>
-								<li><span>Страховая премия: </span><strong>${item.strahsum}</strong></li>
-								<li><span>Дата актуальности: </span><strong>${item.dateactual}</strong></li>
+								<li><span>Мощность (л.с.): </span><strong>${voidReplace(item.power)}</strong></li>
+								<li><span>Управление с прицепом: </span><strong>${voidReplace(item.trailer)}</strong></li>
+								<li><span>Цель использования: </span><strong>${voidReplace(item.cel)}</strong></li>
+								<li><span>Допущенные лица: </span><strong>${voidReplace(item.ogran)}</strong></li>
+								<li><span>Страхователь: </span><strong>${voidReplace(item.insured)}</strong></li>
+								<li><span>Собственник: </span><strong>${voidReplace(item.owner)}</strong></li>
+								<li><span>КБМ по договору: </span><strong>${voidReplace(item.kbm)}</strong></li>
+								<li><span>ТС используется: </span><strong>${voidReplace(item.region)}</strong></li>
+								<li><span>Страховая премия: </span><strong>${voidReplace(item.strahsum)}</strong></li>
+								<li><span>Дата актуальности: </span><strong>${voidReplace(item.dateactual)}</strong></li>
 							</div>
 
 						</div>	
 					`);
 				});
+			} else {
+				$('#osagoCheckList').append(`<h3>Полис ОСАГО отсутвует</h3>`);
 			}
 
 			//pledgeCheck
@@ -241,73 +268,120 @@ document.addEventListener('DOMContentLoaded', () => {
 						<div class="info-main__item-table__item">
 								
 							<div class="info-main__item-table__item-container">
-								<li><span>Дата: </span><strong>${item.regDate}</strong></li>
-								<li><span>Залогодатели: </span><strong>${pledgors}</strong></li>
-								<li><span>Залогодержатели: </span><strong>${pledgees}</strong></li>
+								<li><span>Дата: </span><strong>${voidReplace(item.regDate)}</strong></li>
+								<li><span>Залогодатели: </span><strong>${voidReplace(pledgors)}</strong></li>
+								<li><span>Залогодержатели: </span><strong>${voidReplace(pledgees)}</strong></li>
 							</div>
 
 						</div>	
 					`);
 				});
+			} else {
+				$('#pledgeCheckList').append(`<h3>Залоги отсутвуют</h3>`);
 			}
 
 			//leasingCheck
-			if(avto.leasing.length) {
+			if(avto.leasing.num) {
 				avto.leasing.map( (item) => {
-					$('#osagoCheckList').append(`
+					$('#leasingCheckList').append(`
 						<div class="info-main__item-table__item">		
 						
 							<div class="info-main__item-table__item-container">
-								<li><span>Информация: </span><strong>${item.seria}</strong></li>
+								<li><span>Информация: </span><strong>${voidReplace(item.rez)}</strong></li>
 							</div>
 
 						</div>	
 					`);
 				});
+			} else {
+				$('#leasingCheckList').append(`<h3>ТС в лизинге не найдена</h3>`);
 			}
 
 			//taxiCheck
 			if(avto.taxi.length) {
 				avto.taxi.map( (item) => {
-					$('#osagoCheckList').append(`
+					$('#taxiCheckList').append(`
 						<div class="info-main__item-table__item">		
 						
 							<div class="info-main__item-table__item-container">
-								<li><span>Информация: </span><strong>${item.seria}</strong></li>
+								<li><span>Статус: </span><strong>${voidReplace(item.status)}</strong></li>
+								<li><span>Дата выдачи: </span><strong>${voidReplace(item.date_issue)}</strong></li>
+								<li><span>Номер разреш.: </span><strong>${voidReplace(item.permit_number)}</strong></li>
+								<li><span>Владелец: </span><strong>${voidReplace(item.permit_owner)}</strong></li>
+								<li><span>ИНН: </span><strong>${voidReplace(item.inn)}</strong></li>
+								<li><span>Марка: </span><strong>${voidReplace(item.auto_marka)}</strong></li>
+								<li><span>Модель: </span><strong>${voidReplace(item.model)}</strong></li>
+								<li><span>Гос. номер: </span><strong>${voidReplace(item.regnum)}</strong></li>
+								<li><span>Год выпуска: </span><strong>${voidReplace(item.auto_year)}</strong></li>
+								<li><span>Номер бланка: </span><strong>${voidReplace(item.permit_seria)}</strong></li>
+								<li><span>ЮЛ или ИП: </span><strong>${voidReplace(item.nameulip)}</strong></li>
+								<li><span>Дата изменений: </span><strong>${voidReplace(item.date_modification)}</strong></li>
+								<li><span>Срок действия: </span><strong>${voidReplace(item.permit_term)}</strong></li>
+								<li><span>Регион: </span><strong>${voidReplace(item.region)}</strong></li>
 							</div>
 
 						</div>	
 					`);
 				});
+			} else {
+				$('#taxiCheckList').append(`<h3>ТС в базе такси не найдена</h3>`);
 			}
 
 			//mileageCheck
-			if(avto.mileage.length) {
-				avto.mileage.map( (item) => {
-					$('#osagoCheckList').append(`
+			if(avto.mileage.count) {
+				avto.mileage.records.map( (item) => {
+					$('#mileageCheckList').append(`
 						<div class="info-main__item-table__item">		
 						
 							<div class="info-main__item-table__item-container">
-								<li><span>Информация: </span><strong>${item.seria}</strong></li>
-								<li><span>Информация: </span><strong>${item.seria}</strong></li>
-								<li><span>Информация: </span><strong>${item.seria}</strong></li>
-								<li><span>Информация: </span><strong>${item.seria}</strong></li>
+								<li><span>Дата окон.: </span><strong>${voidReplace(item.dcExpirationDate)}</strong></li>
+								<li><span>Адрес выдачи: </span><strong>${voidReplace(item.pointAddress)}</strong></li>
+								<li><span>Шасси: </span><strong>${voidReplace(item.chassis)}</strong></li>
+								<li><span>Кузов: </span><strong>${voidReplace(item.body)}</strong></li>
+								<li><span>Оператор: </span><strong>${voidReplace(item.operatorName)}</strong></li>
+								<li><span>Показания: </span><strong>${voidReplace(item.odometerValue)}</strong></li>
+								<li><span>Номер ДК: </span><strong>${voidReplace(item.dcNumber)}</strong></li>
+								<li><span>Дата выдачи: </span><strong>${voidReplace(item.dcDate)}</strong></li>
+								<li><span>VIN ТС: </span><strong>${VIN}</strong></li>
+								<li><span>Модель: </span><strong>${voidReplace(item.model)}</strong></li>
+								<li><span>Марка: </span><strong>${voidReplace(item.brand)}</strong></li>
 							</div>
 
 						</div>	
 					`);
+
+					item.previousDcs.map( (item) => {
+						$('#mileagePastCheckList').append(`
+							<div class="info-main__item-table__item">		
+							
+								<div class="info-main__item-table__item-container">
+									<li><span>Старые показания: </span><strong>${voidReplace(item.odometerValue)}</strong></li>
+									<li><span>Дата ДК: </span><strong>${voidReplace(item.dcDate)} - ${voidReplace(item.dcExpirationDate)}</strong></li>
+									<li><span>Номер ДК: </span><strong>${voidReplace(item.dcNumber)}</strong></li>
+								</div>
+
+							</div>	
+						`);
+					})
 				});
+
+			} else {
+				$('#mileageCheckList').append(`<h3>Данные ДК не найдены</h3>`);
 			}
 
 		}
 
+		let resAvto;
 		$.ajax({
-			url: 'https://shielded-beach-99956.herokuapp.com/api/main',
-			type: 'POST',    
-			dataType: 'json',  
+			type: "POST",
+			url: 'backend/avto.php',
+			cache: false,
+			data: {
+				vin: localStorage.getItem('vin')
+			},
+			dataType: 'json', 
 			success: function(data){
 				infoLoading(data);  
-				console.log(data);  
 
 				//slider
 				$('.info-main__item-slider').slick({
@@ -315,7 +389,42 @@ document.addEventListener('DOMContentLoaded', () => {
 					slidesToScroll: 4,
 					infinite: false
 				})
+
+				resAvto = data;
 			}   
+		});
+
+		function downloadPDF(name) {
+			var link = document.createElement('a');
+			link.setAttribute('href', 'backend/' + name);
+			link.setAttribute('download', name);
+			link.click();
+			link.remove();
+		}
+
+		//download report 
+		$('.info-main-header__btn').click(function(e) {
+			e.preventDefault();
+			console.log(resAvto)
+			$.ajax({
+				type: "POST",
+				url: 'backend/reportPDF.php',
+				cache: false,
+				data: {
+					vin: localStorage.getItem('vin'),
+					regNum: resAvto.regNum,
+					mainInfo: JSON.stringify(resAvto.mainInfo),
+					wanted: JSON.stringify(resAvto.wanted),
+					limitation: JSON.stringify(resAvto.limitation),
+					trfacc: JSON.stringify(resAvto.trfacc),
+					mileage: JSON.stringify(resAvto.mileage),
+					policy: JSON.stringify(resAvto.policy),
+					deposit: JSON.stringify(resAvto.deposit),
+					leasing: JSON.stringify(resAvto.leasing),
+					photo: JSON.stringify(resAvto.photo),
+					taxi: JSON.stringify(resAvto.taxi)
+				},
+			}).done((data) => downloadPDF(data));
 		});
 
 		$('.info-menu__item').click(function(e) {
