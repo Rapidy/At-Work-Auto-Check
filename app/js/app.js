@@ -71,6 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				document.location.href = "report.html";
 			}
 		})
+
+		
 		
 	} else {
 
@@ -86,39 +88,42 @@ document.addEventListener('DOMContentLoaded', () => {
 			//main var 
 			const VIN = avto.VIN;
 			const regNum = avto.regNum;
+			if(avto.mainInfo.status == 200) {
+				//header info 
+				$('#carName').text(avto.mainInfo.vehicle.model);
+				$('#carYear').text(avto.mainInfo.vehicle.year);
 
-			//header info 
-			$('#carName').text(avto.mainInfo.vehicle.model);
-			$('#carYear').text(avto.mainInfo.vehicle.year);
+				//main info 
+				$('#mainVin').text(VIN);
+				$('#mainCarNumber').text(regNum);
+				$('#mainYear').text(voidReplace(avto.mainInfo.vehicle.year));
+				$('#mainColor').text(voidReplace(avto.mainInfo.vehicle.color));
+				$('#mainModel').text(voidReplace(avto.mainInfo.vehicle.model));
+				$('#mainVolume').text(voidReplace(avto.mainInfo.vehicle.engineVolume));
+				$('#mainHorsePower').text(voidReplace(avto.mainInfo.vehicle.powerHp));
+				$('#mainElectricPower').text(voidReplace(avto.mainInfo.vehicle.powerKwt));
+				$('#mainEngineNumber').text(voidReplace(avto.mainInfo.vehicle.engineNumber));
+				$('#mainBodyNumber').text(voidReplace(avto.mainInfo.vehicle.bodyNumber));
+				$('#mainCarCatergory').text(voidReplace(avto.mainInfo.vehicle.category));
+				$('#mainCarType').text(voidReplace(avto.mainInfo.vehicle.typeinfo));
 
-			//main info 
-			$('#mainVin').text(VIN);
-			$('#mainCarNumber').text(regNum);
-			$('#mainYear').text(voidReplace(avto.mainInfo.vehicle.year));
-			$('#mainColor').text(voidReplace(avto.mainInfo.vehicle.color));
-			$('#mainModel').text(voidReplace(avto.mainInfo.vehicle.model));
-			$('#mainVolume').text(voidReplace(avto.mainInfo.vehicle.engineVolume));
-			$('#mainHorsePower').text(voidReplace(avto.mainInfo.vehicle.powerHp));
-			$('#mainElectricPower').text(voidReplace(avto.mainInfo.vehicle.powerKwt));
-			$('#mainEngineNumber').text(voidReplace(avto.mainInfo.vehicle.engineNumber));
-			$('#mainBodyNumber').text(voidReplace(avto.mainInfo.vehicle.bodyNumber));
-			$('#mainCarCatergory').text(voidReplace(avto.mainInfo.vehicle.category));
-			$('#mainCarType').text(voidReplace(avto.mainInfo.vehicle.typeinfo));
-
-			//slider number
-			$('#carNumber').text(regNum);
-
+				//slider number
+				$('#carNumber').text(voidReplace(regNum));
+			} else {
+				$('#info').html('<h2>Упссс!. Автомобиль в базе данных не найдена</h2>');
+			}
+			
 			//slider photo 
-			if(avto.photo.count) {
+			if(avto.photo != undefined && avto.photo.count) {
 				avto.photo.records.map((item) => {
 					$('#carPhoto').append('<a href="'+item.bigPhoto+'"><img src="'+item.urlphoto+'" alt=""></a>');
 				});
 			} else {
-				$('#regHistoryList').append(`<h3>Фото не найдены</h3>`);
+				$('#carPhoto').append(`<h3>Фото не найдены</h3>`);
 			}
 
 			//regHistory
-			if(avto.mainInfo.ownershipPeriod.length) {
+			if(avto.mainInfo.status == 200 && avto.mainInfo.ownershipPeriod.length) {
 				avto.mainInfo.ownershipPeriod.map( (item) => {
 					$('#regHistoryList').append(`
 						<div class="info-main__item-table__item">
@@ -300,7 +305,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 
 			//taxiCheck
-			if(avto.taxi.length) {
+			if(avto.taxi != undefined && avto.taxi.length) {
 				avto.taxi.map( (item) => {
 					$('#taxiCheckList').append(`
 						<div class="info-main__item-table__item">		
@@ -366,77 +371,76 @@ document.addEventListener('DOMContentLoaded', () => {
 								</div>	
 							`);
 						})
-					} else {
-						$('.detected_info').text('не найдены');
 					}
 
 				});
 
 			} else {
 				$('#mileageCheckList').append(`<h3>Данные ДК не найдены</h3>`);
+				$('#detected_info').text('не найдены');
 			}
 
 		}
 
-		// let resAvto;
-		// $.ajax({
-		// 	type: "POST",
-		// 	url: 'backend/avto.php',
-		// 	cache: false,
-		// 	data: {
-		// 		vin: localStorage.getItem('vin')
-		// 	},
-		// 	dataType: 'json', 
-		// 	success: function(data){
-		// 		infoLoading(data);  
+		let resAvto;
+		$.ajax({
+			type: "POST",
+			url: 'backend/avto.php',
+			cache: false,
+			data: {
+				vin: localStorage.getItem('vin')
+			},
+			dataType: 'json', 
+			success: function(data){
+				infoLoading(data);  
 
-		// 		//slider
-		// 		$('.info-main__item-slider').slick({
-		// 			slidesToShow: 4,
-		// 			slidesToScroll: 4,
-		// 			infinite: false
-		// 		})
+				//slider
+				$('.info-main__item-slider').slick({
+					slidesToShow: 4,
+					slidesToScroll: 4,
+					infinite: false
+				})
 
-		// 		$('.preloader').hide()
+				$('.preloader').hide()
 
-		// 		resAvto = data;
-		// 	}   
-		// });
+				resAvto = data;
+			}   
+		});
 
-		// function downloadPDF(name) {
-		// 	let link = document.createElement('a');
-		// 	link.setAttribute('href', 'backend/' + name);
-		// 	link.setAttribute('download', name);
-		// 	link.click();
-		// 	link.remove();
-		// 	$('.preloader').hide()
-		// }
+		function downloadPDF(name) {
+			let link = document.createElement('a');
+			link.setAttribute('href', 'backend/' + name);
+			link.setAttribute('download', name);
+			link.click();
+			link.remove();
+			$('.preloader').hide()
+		}
 
-		// //download report 
-		// $('.info-main-header__btn').click(function(e) {
-		// 	e.preventDefault();
-		// 	console.log(resAvto)
-		// 	$('.preloader').show()
-		// 	$.ajax({
-		// 		type: "POST",
-		// 		url: 'backend/reportPDF.php',
-		// 		cache: false,
-		// 		data: {
-		// 			vin: localStorage.getItem('vin'),
-		// 			regNum: resAvto.regNum,
-		// 			mainInfo: JSON.stringify(resAvto.mainInfo),
-		// 			wanted: JSON.stringify(resAvto.wanted),
-		// 			limitation: JSON.stringify(resAvto.limitation),
-		// 			trfacc: JSON.stringify(resAvto.trfacc),
-		// 			mileage: JSON.stringify(resAvto.mileage),
-		// 			policy: JSON.stringify(resAvto.policy),
-		// 			deposit: JSON.stringify(resAvto.deposit),
-		// 			leasing: JSON.stringify(resAvto.leasing),
-		// 			photo: JSON.stringify(resAvto.photo),
-		// 			taxi: JSON.stringify(resAvto.taxi)
-		// 		},
-		// 	}).done((data) => downloadPDF(data));
-		// });
+		//download report 
+		$('.info-main-header__btn').click(function(e) {
+			e.preventDefault();
+			console.log(resAvto)
+			$('.preloader').show()
+			$.ajax({
+				type: "POST",
+				url: 'backend/reportPDF.php',
+				cache: false,
+				data: {
+					vin: localStorage.getItem('vin'),
+					regNum: resAvto.regNum,
+					mainInfo: JSON.stringify(resAvto.mainInfo),
+					wanted: JSON.stringify(resAvto.wanted),
+					limitation: JSON.stringify(resAvto.limitation),
+					trfacc: JSON.stringify(resAvto.trfacc),
+					mileage: JSON.stringify(resAvto.mileage),
+					policy: JSON.stringify(resAvto.policy),
+					deposit: JSON.stringify(resAvto.deposit),
+					leasing: JSON.stringify(resAvto.leasing),
+					photo: JSON.stringify(resAvto.photo),
+					taxi: JSON.stringify(resAvto.taxi)
+				},
+			}).done((data) => downloadPDF(data));
+		});
 
 		$('.info-menu__item').click(function(e) {
 			e.preventDefault();

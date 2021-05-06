@@ -30,7 +30,7 @@ $urls = array(
     "https://api-cloud.ru/api/gibdd.php/?type=restrict&vin=".$vin."&token=".TOKEN,             // проверка на огроничения 
     "https://api-cloud.ru/api/gibdd.php/?type=dtp&vin=".$vin."&token=".TOKEN,                  // проверка на ДТП
     "https://api-cloud.ru/api/gibdd.php?vin=".$vin."&type=eaisto&token=".TOKEN,                // проверка диаг. карт и пробега
-    "https://api-cloud.ru/api/rsa.php?type=osago&vin=".$vin."&token=".TOKEN,                   // проверка полиса ОСАГА    
+    // "https://api-cloud.ru/api/rsa.php?type=osago&vin=".$vin."&token=".TOKEN,                   // проверка полиса ОСАГА    
     "https://api-cloud.ru/api/zalog.php/?type=notary&vin=".$vin."&token=".TOKEN,               // проверка залога по VIN
     "https://api-cloud.ru/api/zalog.php/?type=fedresurs&vin=".$vin."&token=".TOKEN,            // проверка на налчиие в лизинге 
     "https://api-cloud.ru/api/autophoto.php/?type=regnum&regNum=".$regNum."&token=".TOKEN,     // фото авто по гос. номеру
@@ -43,7 +43,7 @@ $nameKeyArray = array(
     "limitation",
     "trfacc",
     "mileage",
-    "policy",
+    // "policy",
     "deposit",
     "leasing",
     "photo",
@@ -143,6 +143,7 @@ curl_multi_close($multi);
 
 $resAvto["VIN"] = $vin;
 $resAvto["regNum"] = $regNum;
+$resAvto["policy"] = json_decode($response);
 
 echo json_encode($resAvto);
 
