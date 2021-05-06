@@ -166,21 +166,21 @@ document.addEventListener('DOMContentLoaded', () => {
 					$('#limitCheckList').append(`
 						<div class="info-main__item-table__item">
 
-						<div class="info-main__item-table__item-container">
-						<li><span>Регион: </span><strong>${voidReplace(item.regname)}</strong></li>
-						<li><span>Ключ ГИБДД: </span><strong>${voidReplace(item.gid)}</strong></li>
-						<li><span>Дата наложения: </span><strong>${voidReplace(item.dateogr)} - ${voidReplace(item.dateadd)}</strong></li>
-						<li><span>Вид ограничения: </span><strong>${voidReplace(item.ogrkodinfo)}</strong></li>
-						<li><span>Телефон инициатора: </span><strong>${voidReplace(item.phone)}</strong></li>
-						<li><span>Кем наложен: </span><strong>${voidReplace(item.divtypeinfo)}</strong></li>
-						<li><span>Год ТС: </span><strong>${voidReplace(item.tsyear)}</strong></li>
-						<li><span>VIN TC: </span><strong>${VIN}</strong></li>
-						<li><span>Модель ТС: </span><strong>${voidReplace(item.tsmodel)}</strong></li>
-						<li><span>Номер кузова: </span><strong>${voidReplace(item.tsKuzov)}</strong></li>
-		
-						<h5>Основания</h5>
-						<strong>${voidReplace(item.osnOgr)}</strong>
-						</div>
+							<div class="info-main__item-table__item-container">
+								<li><span>Регион: </span><strong>${voidReplace(item.regname)}</strong></li>
+								<li><span>Ключ ГИБДД: </span><strong>${voidReplace(item.gid)}</strong></li>
+								<li><span>Дата наложения: </span><strong>${voidReplace(item.dateogr)} - ${voidReplace(item.dateadd)}</strong></li>
+								<li><span>Вид ограничения: </span><strong>${voidReplace(item.ogrkodinfo)}</strong></li>
+								<li><span>Телефон инициатора: </span><strong>${voidReplace(item.phone)}</strong></li>
+								<li><span>Кем наложен: </span><strong>${voidReplace(item.divtypeinfo)}</strong></li>
+								<li><span>Год ТС: </span><strong>${voidReplace(item.tsyear)}</strong></li>
+								<li><span>VIN TC: </span><strong>${VIN}</strong></li>
+								<li><span>Модель ТС: </span><strong>${voidReplace(item.tsmodel)}</strong></li>
+								<li><span>Номер кузова: </span><strong>${voidReplace(item.tsKuzov)}</strong></li>
+				
+								<h5>Основания</h5>
+								<strong>${voidReplace(item.osnOgr)}</strong>
+							</div>
 		
 						</div>
 					`);
