@@ -1,13 +1,17 @@
 <?php
+//config
 set_time_limit(0);
+ini_set('max_execution_time', 0);
+
 const TOKEN = '5bed5805eee506590a0d889451647c8b';
+// $vin = 'XTA210990Y2766389';
 $vin = $_POST['vin'];
 
 
 //конвертация vin ---> гос. номер 
 $curl_solo = curl_init();
 curl_setopt_array($curl_solo, array(
-  CURLOPT_URL => "https://api-cloud.ru/api/converter.php/?type=vin&vin=".$vin."&token=".TOKEN,
+  CURLOPT_URL => "https://api-cloud.ru/api/rsa.php?type=osago&vin=".$vin."&token=".TOKEN,
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_ENCODING => '',
   CURLOPT_MAXREDIRS => 10,
@@ -16,12 +20,9 @@ curl_setopt_array($curl_solo, array(
   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
   CURLOPT_CUSTOMREQUEST => 'POST',
 ));
-
 $response = curl_exec($curl_solo);
 curl_close($curl_solo);
-
 $regNum = json_decode($response)[0]->{"regnum"};
-
 
 //получение всей инфы по VIN и гос. номеру 
 $urls = array(
@@ -33,8 +34,8 @@ $urls = array(
     // "https://api-cloud.ru/api/rsa.php?type=osago&vin=".$vin."&token=".TOKEN,                   // проверка полиса ОСАГА    
     "https://api-cloud.ru/api/zalog.php/?type=notary&vin=".$vin."&token=".TOKEN,               // проверка залога по VIN
     "https://api-cloud.ru/api/zalog.php/?type=fedresurs&vin=".$vin."&token=".TOKEN,            // проверка на налчиие в лизинге 
-    "https://api-cloud.ru/api/autophoto.php/?type=regnum&regNum=".$regNum."&token=".TOKEN,     // фото авто по гос. номеру
-    "https://api-cloud.ru/api/taxi.php/?type=regnum&regnum=".$regNum."&token=".TOKEN           // проверка авто в такси 
+    // "https://api-cloud.ru/api/autophoto.php/?type=regnum&regNum=".$regNum."&token=".TOKEN,     // фото авто по гос. номеру
+    // "https://api-cloud.ru/api/taxi.php/?type=regnum&regnum=".$regNum."&token=".TOKEN           // проверка авто в такси 
 );
 
 $nameKeyArray = array(
@@ -46,41 +47,18 @@ $nameKeyArray = array(
     // "policy",
     "deposit",
     "leasing",
-    "photo",
-    "taxi"
+    // "photo",
+    // "taxi"
 );
 
-//[curl_solo]=================Долгий запрос, но полный (2 - 6мин)
-// $myArr = [];
-// foreach($urls as $url) {
-//     $ch = curl_init($url);
-//     curl_setopt_array($ch, array(
-//         CURLOPT_URL => $url,
-//         CURLOPT_RETURNTRANSFER => true,
-//         CURLOPT_ENCODING => '',
-//         CURLOPT_MAXREDIRS => 10,
-//         CURLOPT_TIMEOUT => 0,
-//         CURLOPT_FOLLOWLOCATION => true,
-//         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-//         CURLOPT_CUSTOMREQUEST => 'POST',
-//     ));
 
-//     $res = curl_exec($ch);
-//     curl_close($ch);
+if(strlen($regNum)) {
+    array_push($urls, "https://api-cloud.ru/api/autophoto.php/?type=regnum&regNum=".$regNum."&token=".TOKEN);
+    array_push($urls, "https://api-cloud.ru/api/taxi.php/?type=regnum&regnum=".$regNum."&token=".TOKEN);
 
-//     array_push($myArr, json_decode($res));
-// }
-// echo json_encode($myArr);
-
-
-//[curl_multi]=================Быстрый запрос, но не полный (30с - 2мин)
-// $urls = array(
-//     'http://localhost:8090/api/main',
-//     'http://localhost:8090/api/main2',
-//     'http://localhost:8090/api/main3',
-//     'http://localhost:8090/api/main4',
-//     'http://localhost:8090/api/main5',
-// );
+    array_push($nameKeyArray, "photo");
+    array_push($nameKeyArray, "taxi");
+}
 
 $multi = curl_multi_init();
 $handles = [];
