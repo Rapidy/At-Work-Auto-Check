@@ -32,9 +32,43 @@
       background: #ffffff2a
       border-radius: 50px
 
+@media screen and (max-width: 980px)
+  .info
+    padding: 0
+    .container
+      padding: 0
+    &-main__item-table__item-container
+      li
+        display: flex
+        flex-direction: column
+        strong
+          margin-bottom: 10px
+
+@media screen and (max-width: 930px)
+  .info-menu__item
+    font-size: 15px
+
+@media screen and (max-width: 840px) 
+  .info
+    background: $light
+    &-main
+      width: 100%
+      &-header__date
+        margin-left: 23px  
+    &-menu
+      width: 30%
+      position: absolute
+      top: 0
+      left: 0
+      bottom: 0
+      z-index: 10
+      transform: translateX(-100%)
+      button
+        display: block
+
 @media screen and (max-width: 800px)
   .main-check-input
-    width: 73%    
+    width: 73%
 
 @media screen and (max-width: 700px)
   .checklist-photo__item
@@ -44,15 +78,34 @@
       margin-left: -10%
 
   .report-container-slider
+    h2
+      margin-bottom: 100px
     img
       max-width: 460px
 
   .main-check-input__hint
     right: -10%    
 
+@media screen and (max-width: 670px)
+  .info
+    &-menu
+      width: 40% 
+    &-main__item-container
+      display: block
+      &-stats
+        margin: 0 !important
+        width: 100%  
+
 @media screen and (max-width: 550px)
-  h1, h2
-    font-size: 30px !important
+  .landing
+    h1, h2
+      font-size: 30px !important
+
+  .info
+    h1
+      font-size: 30px !important
+    h2
+      font-size: 20px !important    
 
   .main-check-input__hint
     padding: 25px
@@ -61,6 +114,10 @@
 @media screen and (max-width: 500px)
   .main-check-input__hint
     right: -30% 
+
+  .info
+    &-menu
+      width: 60%   
 
 @media screen and (max-width: 460px)
   .checklist
@@ -121,3 +178,12 @@
   .main-check-input__hint
     padding: 17px
     right: -37%
+
+  .info
+    h1
+      font-size: 27px !important
+    h2
+      font-size: 18px !important
+    li  
+      span, strong
+        font-size: 15px  
