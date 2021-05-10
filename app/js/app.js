@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						<div class="info-main__item-table__item">
 
 							<div class="info-main__item-table__item-container">
-								<li><span>Причина регистрации: </span><strong>${voidReplace(item.lastOperationInfo)}</strong></li>
+								<li><span>Причина: </span><strong>${voidReplace(item.lastOperationInfo)}</strong></li>
 								<li><span>Тип владельца: </span><strong>${voidReplace(item.simplePersonTypeInfo)}</strong></li>
 								<li><span>Дата регистрации: </span><strong>${voidReplace(item.from)}</strong></li>
 								<li><span>Дата снятия: </span><strong>${voidReplace(item.to)}</strong></li>
@@ -472,6 +472,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		}) 
 	
 		$('.info-main-header__date time').html(new Date().toLocaleDateString());
+
+		$('.info-menu-mobile__btn').click(function() {
+			$('.info-menu').toggleClass('show')
+			$(this).toggleClass('active')
+		})
 
 		$('.info-main__item-slider').magnificPopup({
 			delegate: 'a',
