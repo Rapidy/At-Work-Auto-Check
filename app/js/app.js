@@ -72,7 +72,41 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		})
 
-		
+		$('.main-buttons__btn--header').click(function() {
+
+			$('.main-buttons__btn--header').removeClass('active')
+
+			if($(this).data('id') == 'vinCheck') {
+				$('.numberCheck').hide()
+				$('.vinCheck').show();
+				$(this).addClass('active')
+			}		
+
+			if($(this).data('id') == 'numberCheck') {
+				$('.vinCheck').hide();
+				$('.numberCheck').show();
+				$(this).addClass('active')
+			}
+			
+		})
+
+		$('.main-buttons__btn--footer').click(function() {
+
+			$('.main-buttons__btn--footer').removeClass('active')
+
+			if($(this).data('id') == 'vinCheckFooter') {
+				$('.numberCheck--footer').hide()
+				$('.vinCheck--footer').show();
+				$(this).addClass('active')
+			}		
+
+			if($(this).data('id') == 'numberCheckFooter') {
+				$('.vinCheck--footer').hide();
+				$('.numberCheck--footer').show();
+				$(this).addClass('active')
+			}
+			
+		})
 		
 	} else {
 
@@ -442,7 +476,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				$('#penaltyCheckList').removeClass('hidden');
 				$('#ctcInput').hide();
 
-				if(sizeof(data)) {
+				if(data.length) {
 					data.map((item) => {
 						$('#penaltyCheckList').append(`
 							<div class="info-main__item-table__item">	

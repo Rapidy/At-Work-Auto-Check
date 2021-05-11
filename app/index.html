@@ -30,12 +30,16 @@
           Проверьте его по ВИН (VIN) коду и госномеру с гарантией достоверности данных,<br> воспользовавшись нашим сервисом.</h3>
       </div>
 
+      <div class="main-buttons">
+        <button class="main-buttons__btn main-buttons__btn--header active" data-id="vinCheck">VIN</button>
+        <button class="main-buttons__btn main-buttons__btn--header" data-id="numberCheck">Госномер</button>
+      </div>
+
       <form class="main-check">
 
-        <div class="main-check-input">
+        <div class="main-check-input vinCheck">
 
           <input type="text" class="checkInput" placeholder="Введите VIN" maxlength="17" required>
-          <!-- <input type="text" class="checkInput" placeholder="Введите VIN или госномер" required> -->
           <span class="question-mark hint-btn--top">?</span>
 
           <div class="main-check-input__hint hint--top">
@@ -69,6 +73,12 @@
             <p>*Каждому транспортному средству присваивается идентификационный номер (Vehicle identification number) VIN — уникальный код из 17 знаков (буквы латинского алфавита и арабские цифры), содержащий информацию о производителе, характеристиках данного транспортного средства, а также год его выпуска.</p>
 
           </div>
+
+        </div>
+
+        <div class="main-check-input numberCheck hidden">
+
+          <input type="text" class="checkInput" placeholder="Введите госномер" maxlength="17" required>
 
         </div>
 
@@ -165,12 +175,16 @@
 
       <h2>Проверьте автомобиль прямо сейчас</h2>
 
+      <div class="main-buttons">
+        <button class="main-buttons__btn main-buttons__btn--footer active" data-id="vinCheckFooter">VIN</button>
+        <button class="main-buttons__btn main-buttons__btn--footer" data-id="numberCheckFooter">Госномер</button>
+      </div>
+
       <form class="main-check">
 
-        <div class="main-check-input">
+        <div class="main-check-input vinCheck--footer">
 
           <input type="text" class="checkInput" placeholder="Введите VIN" maxlength="17" required>
-          <!-- <input type="text" class="checkInput" placeholder="Введите VIN или госномер" required> -->
           <span class="question-mark hint-btn--bottom">?</span>
 
           <div class="main-check-input__hint hint--bottom">
@@ -205,6 +219,12 @@
 
           </div>
 
+        </div>
+
+        <div class="main-check-input numberCheck--footer hidden">
+
+          <input type="text" class="checkInput" placeholder="Введите госномер" maxlength="17" required>
+          
         </div>
 
         <a href="" class="main-check__btn">Проверить</a>
