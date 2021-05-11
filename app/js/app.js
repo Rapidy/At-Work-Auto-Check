@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					infinite: false
 				})
 
-				$('.preloader').hide()
+				$('#preloader').hide()
 
 				resAvto = data;
 			}   
@@ -413,14 +413,14 @@ document.addEventListener('DOMContentLoaded', () => {
 			link.setAttribute('download', name);
 			link.click();
 			link.remove();
-			$('.preloader').hide()
+			$('#preloader').hide()
 		}
 
 		//download report 
 		$('.info-main-header__btn').click(function(e) {
 			e.preventDefault();
 			console.log(resAvto)
-			$('.preloader').show()
+			$('#preloader').show()
 			$.ajax({
 				type: "POST",
 				url: 'backend/reportPDF.php',
