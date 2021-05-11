@@ -32,10 +32,27 @@
       font-weight: 400
       font-size: 16px
 
+.main-buttons
+  margin-top: 30px
+  margin-left: 15px
+  display: flex
+  margin-bottom: -5px
+  width: 50%
+  justify-content: center
+  &__btn
+    color: $textcolor
+    padding: 5px 10px
+    &:hover
+      background: lighten($accent, 15%)
+    &.active
+      background: $accent
+      color: #fff  
+
 .main-check
   display: flex
   justify-content: center
-  margin-top: 30px
+  .numberCheck, .numberCheck--footer
+    display: none
   &-input
     width: 53%
     border-radius: 6px 0 0 6px

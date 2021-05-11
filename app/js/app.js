@@ -72,7 +72,41 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		})
 
-		
+		$('.main-buttons__btn--header').click(function() {
+
+			$('.main-buttons__btn--header').removeClass('active')
+
+			if($(this).data('id') == 'vinCheck') {
+				$('.numberCheck').hide()
+				$('.vinCheck').show();
+				$(this).addClass('active')
+			}		
+
+			if($(this).data('id') == 'numberCheck') {
+				$('.vinCheck').hide();
+				$('.numberCheck').show();
+				$(this).addClass('active')
+			}
+			
+		})
+
+		$('.main-buttons__btn--footer').click(function() {
+
+			$('.main-buttons__btn--footer').removeClass('active')
+
+			if($(this).data('id') == 'vinCheckFooter') {
+				$('.numberCheck--footer').hide()
+				$('.vinCheck--footer').show();
+				$(this).addClass('active')
+			}		
+
+			if($(this).data('id') == 'numberCheckFooter') {
+				$('.vinCheck--footer').hide();
+				$('.numberCheck--footer').show();
+				$(this).addClass('active')
+			}
+			
+		})
 		
 	} else {
 
@@ -462,18 +496,18 @@ document.addEventListener('DOMContentLoaded', () => {
 					<div class="info-main__item-table__item">	
 										
 						<div class="info-main__item-table__item-container">
-							<li><span>Скидка: </span><strong>${data.}</strong></li>
-							<li><span>Скидка до: </span><strong>${data.}</strong></li>
-							<li><span>Расшифровка КоАП: </span><strong>${data.}</strong></li>
-							<li><span>Код КоАП: </span><strong>${data.}</strong></li>
-							<li><span>Номер постановления: </span><strong>${data.}</strong></li>
-							<li><span>КБК: </span><strong>${data.}</strong></li>
-							<li><span>Сумма штрафа: </span><strong>${data.}</strong></li>
-							<li><span>Дата постановления: </span><strong>${data.}</strong></li>
-							<li><span>Подразделение: </span><strong>${data.}</strong></li>
-							<li><span>Адрес: </span><strong${data.}></strong$></li>
-							<li><span>Координаты: </span><strong>${data.}</strong></li>
-							<li><span>Марка/Модель: </span><strong>${data.}</strong></li>
+							<li><span>Скидка: </span><strong>${data}</strong></li>
+							<li><span>Скидка до: </span><strong>${data}</strong></li>
+							<li><span>Расшифровка КоАП: </span><strong>${data}</strong></li>
+							<li><span>Код КоАП: </span><strong>${data}</strong></li>
+							<li><span>Номер постановления: </span><strong>${data}</strong></li>
+							<li><span>КБК: </span><strong>${data}</strong></li>
+							<li><span>Сумма штрафа: </span><strong>${data}</strong></li>
+							<li><span>Дата постановления: </span><strong>${data}</strong></li>
+							<li><span>Подразделение: </span><strong>${data}</strong></li>
+							<li><span>Адрес: </span><strong${data}></strong$></li>
+							<li><span>Координаты: </span><strong>${data}</strong></li>
+							<li><span>Марка/Модель: </span><strong>${data}</strong></li>
 						</div>
 
 					</div>`
