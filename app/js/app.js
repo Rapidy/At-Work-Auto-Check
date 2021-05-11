@@ -458,26 +458,32 @@ document.addEventListener('DOMContentLoaded', () => {
 				$('#penaltyCheckList').removeClass('hidden');
 				$('#ctcInput').hide();
 
-				$('#penaltyCheckList').append(`
-					<div class="info-main__item-table__item">	
-										
-						<div class="info-main__item-table__item-container">
-							<li><span>Скидка: </span><strong>${data.}</strong></li>
-							<li><span>Скидка до: </span><strong>${data.}</strong></li>
-							<li><span>Расшифровка КоАП: </span><strong>${data.}</strong></li>
-							<li><span>Код КоАП: </span><strong>${data.}</strong></li>
-							<li><span>Номер постановления: </span><strong>${data.}</strong></li>
-							<li><span>КБК: </span><strong>${data.}</strong></li>
-							<li><span>Сумма штрафа: </span><strong>${data.}</strong></li>
-							<li><span>Дата постановления: </span><strong>${data.}</strong></li>
-							<li><span>Подразделение: </span><strong>${data.}</strong></li>
-							<li><span>Адрес: </span><strong${data.}></strong$></li>
-							<li><span>Координаты: </span><strong>${data.}</strong></li>
-							<li><span>Марка/Модель: </span><strong>${data.}</strong></li>
-						</div>
-
-					</div>`
-				);
+				if(sizeof(data)) {
+					data.map((item) => {
+						$('#penaltyCheckList').append(`
+							<div class="info-main__item-table__item">	
+												
+								<div class="info-main__item-table__item-container">
+									<li><span>Скидка: </span><strong>${item.Discount}</strong></li>
+									<li><span>Скидка до: </span><strong>${item.DateDiscount}</strong></li>
+									<li><span>Расшифровка КоАП: </span><strong>${item.KoAPtext}</strong></li>
+									<li><span>Код КоАП: </span><strong>${item.KoAPcode}</strong></li>
+									<li><span>Номер постановления: </span><strong>${item.NumPost}</strong></li>
+									<li><span>КБК: </span><strong>${item.kbk}</strong></li>
+									<li><span>Сумма штрафа: </span><strong>${item.Summa}</strong></li>
+									<li><span>Дата постановления: </span><strong>${item.DatePost}</strong></li>
+									<li><span>Подразделение: </span><strong>${item.division_name}</strong></li>
+									<li><span>Адрес: </span><strong${item.division_address}></strong$></li>
+									<li><span>Координаты: </span><strong>${item.division_coords}</strong></li>
+									<li><span>Марка/Модель: </span><strong>${item.VehicleModel}</strong></li>
+								</div>
+	
+							</div>`
+						);
+					});
+				} else {
+					$('#penaltyCheckList').append(`<h3>Штрафы отсутвуют</h3>`);
+				}
 
 				$('#penaltyPreloader').hide()
 			});
