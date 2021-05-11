@@ -415,32 +415,15 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('#preloader').hide()
 		}
 
-		//download report 
-		$('.info-main-header__btn').click(function(e) {
-			e.preventDefault();
-			$('#preloader').show()
-			$.ajax({
-				type: "POST",
-				url: 'backend/reportPDF.php',
-				cache: false,
-				data: {
-					vin: localStorage.getItem('vin'),
-					regNum: resAvto.regNum,
-					mainInfo: JSON.stringify(resAvto.mainInfo),
-					wanted: JSON.stringify(resAvto.wanted),
-					limitation: JSON.stringify(resAvto.limitation),
-					trfacc: JSON.stringify(resAvto.trfacc),
-					mileage: JSON.stringify(resAvto.mileage),
-					policy: JSON.stringify(resAvto.policy),
-					deposit: JSON.stringify(resAvto.deposit),
-					leasing: JSON.stringify(resAvto.leasing),
-					photo: JSON.stringify(resAvto.photo),
-					taxi: JSON.stringify(resAvto.taxi)
-				},
-			}).done((data) => downloadPDF(data));
-		});
 
 		//CTC 
+		let ctc = null;
+		function yesNo(num) {
+			if(num == 1) 	
+				return 'Да';
+			else 
+				return 'Нет';
+		}
 		$('#ctcNum').click(function(e) {
 			e.preventDefault();
 			$('#penaltyPreloader').show()
@@ -455,6 +438,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				},
 				dataType: 'json',
 			}).done((data) => {
+				ctc = data;
 				$('#penaltyCheckList').removeClass('hidden');
 				$('#ctcInput').hide();
 
@@ -464,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
 							<div class="info-main__item-table__item">	
 												
 								<div class="info-main__item-table__item-container">
-									<li><span>Скидка: </span><strong>${item.Discount}</strong></li>
+									<li><span>Скидка: </span><strong>${yesNo(item.Discount)}</strong></li>
 									<li><span>Скидка до: </span><strong>${item.DateDiscount}</strong></li>
 									<li><span>Расшифровка КоАП: </span><strong>${item.KoAPtext}</strong></li>
 									<li><span>Код КоАП: </span><strong>${item.KoAPcode}</strong></li>
@@ -487,6 +471,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
 				$('#penaltyPreloader').hide()
 			});
+		});
+
+		
+		//download report 
+		$('.info-main-header__btn').click(function(e) {
+			e.preventDefault();
+			$('#preloader').show()
+			$.ajax({
+				type: "POST",
+				url: 'backend/reportPDF.php',
+				cache: false,
+				data: {
+					vin: localStorage.getItem('vin'),
+					regNum: resAvto.regNum,
+					mainInfo: JSON.stringify(resAvto.mainInfo),
+					wanted: JSON.stringify(resAvto.wanted),
+					limitation: JSON.stringify(resAvto.limitation),
+					trfacc: JSON.stringify(resAvto.trfacc),
+					mileage: JSON.stringify(resAvto.mileage),
+					policy: JSON.stringify(resAvto.policy),
+					deposit: JSON.stringify(resAvto.deposit),
+					leasing: JSON.stringify(resAvto.leasing),
+					photo: JSON.stringify(resAvto.photo),
+					taxi: JSON.stringify(resAvto.taxi),
+					penalty: JSON.stringify(ctc)
+				},
+			}).done((data) => downloadPDF(data));
 		});
 
 		$('.info-menu-list__item').click(function(e) {
