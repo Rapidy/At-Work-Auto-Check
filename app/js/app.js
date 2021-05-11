@@ -222,7 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			//osagoCheck
 			if(avto.policy.length) {
 				avto.policy.map( (item) => {
-					console.log(item)
 					$('#osagoCheckList').append(`
 						<div class="info-main__item-table__item">		
 						
@@ -419,7 +418,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		//download report 
 		$('.info-main-header__btn').click(function(e) {
 			e.preventDefault();
-			console.log(resAvto)
 			$('#preloader').show()
 			$.ajax({
 				type: "POST",
@@ -440,6 +438,49 @@ document.addEventListener('DOMContentLoaded', () => {
 					taxi: JSON.stringify(resAvto.taxi)
 				},
 			}).done((data) => downloadPDF(data));
+		});
+
+		//CTC 
+		$('#ctcNum').click(function(e) {
+			e.preventDefault();
+			$('#penaltyPreloader').show()
+
+			$.ajax({
+				type: "POST",
+				url: 'backend/reportPDF.php',
+				cache: false,
+				data: {
+					regNum: resAvto.regNum,
+					ctcNum: $('#ctcNumInput').val()
+				},
+				dataType: 'json',
+			}).done((data) => {
+				$('#penaltyCheckList').removeClass('hidden');
+				$('#ctcInput').hide();
+
+				$('#penaltyCheckList').append(`
+					<div class="info-main__item-table__item">	
+										
+						<div class="info-main__item-table__item-container">
+							<li><span>Скидка: </span><strong>${data.}</strong></li>
+							<li><span>Скидка до: </span><strong>${data.}</strong></li>
+							<li><span>Расшифровка КоАП: </span><strong>${data.}</strong></li>
+							<li><span>Код КоАП: </span><strong>${data.}</strong></li>
+							<li><span>Номер постановления: </span><strong>${data.}</strong></li>
+							<li><span>КБК: </span><strong>${data.}</strong></li>
+							<li><span>Сумма штрафа: </span><strong>${data.}</strong></li>
+							<li><span>Дата постановления: </span><strong>${data.}</strong></li>
+							<li><span>Подразделение: </span><strong>${data.}</strong></li>
+							<li><span>Адрес: </span><strong${data.}></strong$></li>
+							<li><span>Координаты: </span><strong>${data.}</strong></li>
+							<li><span>Марка/Модель: </span><strong>${data.}</strong></li>
+						</div>
+
+					</div>`
+				);
+
+				$('#penaltyPreloader').hide()
+			});
 		});
 
 		$('.info-menu-list__item').click(function(e) {
