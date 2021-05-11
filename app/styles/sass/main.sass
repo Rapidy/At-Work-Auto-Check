@@ -36,16 +36,15 @@
   margin-top: 30px
   margin-left: 15px
   display: flex
-  margin-bottom: -5px
   width: 50%
   justify-content: center
   &__btn
     color: $textcolor
-    padding: 5px 10px
+    padding: 2px 12px
     &:hover
-      background: lighten($accent, 15%)
+      background: lighten($bg, 15%)
     &.active
-      background: $accent
+      background: $bg
       color: #fff  
 
 .main-check
@@ -134,6 +133,8 @@
     background: $accent
     border-radius: 0 6px 6px 0
     line-height: 26px
+    &.hidden
+      display: none
     &:hover
       background: lighten($accent, 15%)                   
 

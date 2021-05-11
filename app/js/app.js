@@ -61,32 +61,29 @@ document.addEventListener('DOMContentLoaded', () => {
 			hint.toggleClass('show')
 		})	
 
-		//save VIN 
-		$('.main-check__btn').click(function(e) {
+		//save number 
+		$('.numberBtn').click(function(e) {
 			e.preventDefault();
-			console.log(1)
 
-			localStorage.removeItem("vin");
-			localStorage.removeItem("regNm");
+			localStorage.clear();
 
+			const num_input = $('.numCheckInput').val()
 
-			// if(vin_input != '' && vin_input.length == 17) {
-			// 	localStorage.setItem('vin', vin_input);
-			// 	document.location.href = "report.html";
-			// }
-
-			if($('.main-check-input').data('id') == 'vinCheck') {
-				let vin_input = $('.checkInput').val();
-				if(vin_input != '' && vin_input.length == 17) {
-					localStorage.setItem('vin', vin_input);
-					document.location.href = "report.html";
-				}
-			} 
-
-			if($('.main-check-input').data('id') == 'numCheck') {
-				let num_input = $('.checkInput').val();
- 
+			if(num_input != '') {
 				localStorage.setItem('regNm', num_input);
+				document.location.href = "report.html";
+			}
+		})
+
+		$('.vinBtn').click(function(e) {
+			e.preventDefault();
+
+			localStorage.clear();
+
+			const vin_input = $('.vinCheckInput').val()
+
+			if(vin_input != '' && vin_input.length == 17) {
+				localStorage.setItem('vin', vin_input);
 				document.location.href = "report.html";
 			}
 		})
@@ -98,12 +95,16 @@ document.addEventListener('DOMContentLoaded', () => {
 			if($(this).data('id') == 'vinCheck') {
 				$('.numberCheck').hide()
 				$('.vinCheck').show();
+				$('.numberBtn').hide()
+				$('.vinBtn').show()
 				$(this).addClass('active')
 			}		
 
 			if($(this).data('id') == 'numberCheck') {
 				$('.vinCheck').hide();
 				$('.numberCheck').show();
+				$('.numberBtn').show()
+				$('.vinBtn').hide()
 				$(this).addClass('active')
 			}
 			
@@ -116,12 +117,16 @@ document.addEventListener('DOMContentLoaded', () => {
 			if($(this).data('id') == 'vinCheckFooter') {
 				$('.numberCheck--footer').hide()
 				$('.vinCheck--footer').show();
+				$('.numberBtn').hide()
+				$('.vinBtn').show()
 				$(this).addClass('active')
 			}		
 
 			if($(this).data('id') == 'numberCheckFooter') {
 				$('.vinCheck--footer').hide();
 				$('.numberCheck--footer').show();
+				$('.numberBtn').show()
+				$('.vinBtn').hide()
 				$(this).addClass('active')
 			}
 			
