@@ -442,7 +442,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}).done((data) => downloadPDF(data));
 		});
 
-		$('.info-menu__item').click(function(e) {
+		$('.info-menu-list__item').click(function(e) {
 			e.preventDefault();
 
 			if($(this).hasClass('active')) {
@@ -459,13 +459,13 @@ document.addEventListener('DOMContentLoaded', () => {
 			document.querySelectorAll('.info-main__item').forEach(function(item, i) {
 
 				if(item.offsetTop <= scrollDistance) {
-					document.querySelectorAll('.info-menu__item').forEach(function(item) {
+					document.querySelectorAll('.info-menu-list__item').forEach(function(item) {
 						if(item.classList.contains('active')) {
 							item.classList.remove('active')
 						}
 					})
 				
-					document.querySelectorAll('.info-menu__item')[i].classList.add('active')
+					document.querySelectorAll('.info-menu-list__item')[i].classList.add('active')
 				}
 
 			})
