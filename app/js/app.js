@@ -492,7 +492,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				$('#penaltyCheckList').removeClass('hidden');
 				$('#ctcInput').hide();
 
-				if(sizeof(data)) {
+				if(data.length) {
 					data.map((item) => {
 						$('#penaltyCheckList').append(`
 							<div class="info-main__item-table__item">	
