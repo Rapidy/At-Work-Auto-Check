@@ -447,7 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 			$.ajax({
 				type: "POST",
-				url: 'backend/reportPDF.php',
+				url: 'backend/penalty.php',
 				cache: false,
 				data: {
 					regNum: resAvto.regNum,
