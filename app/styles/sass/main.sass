@@ -434,7 +434,47 @@
           img
             max-width: 100% 
       &-table
-
+        &.hidden
+          height: 400px
+          position: relative
+          .info-main__item-table__item
+            height: 100%
+            display: flex
+            justify-content: center
+            align-items: center
+            &-input
+              z-index: 3
+              border-radius: 6px 0 0 6px
+              button
+                padding: 7.3px 12px 7.2px
+                background: $accent
+                border-radius: 0 6px 6px 0
+                line-height: 26px
+                margin-left: -3.5px
+                &:hover
+                  background: lighten($accent, 15%)
+              input
+                border-radius: 6px 0 0 6px
+                padding: 6px 12px
+          &::before
+            content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa illum harum temporibus qui totam numquam voluptatibus repellat, quidem eaque enim sed perspiciatis nobis. Ratione officia, quidem possimus id magni fuga eius distinctio ea quam esse. Vero odit, debitis eveniet iusto omnis quidem voluptate ea magnam, sapiente fugit recusandae earum minus alias deserunt officia. Quas assumenda error quibusdam, mollitia aut corporis sunt numquam ratione dolor aperiam molestiae, temporibus laudantium iste amet ducimus unde consequatur corrupti. Sunt reiciendis modi omnis harum, sapiente ab, architecto blanditiis velit dolores obcaecati officia possimus sed provident nulla. Pariatur error adipisci ratione qui sapiente ipsa rem minima.Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa illum harum temporibus qui totam numquam voluptatibus repellat, quidem eaque enim sed perspiciatis nobis.Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa illum harum temporibus qui totam numquam voluptatibus repellat, quidem eaque enim sed perspiciatis nobis. Ratione officia, quidem possimus id magni fuga eius distinctio ea quam esse. Vero odit, debitis eveniet iusto omnis quidem voluptate ea magnam, sapiente fugit recusandae earum minus alias deserunt officia. Quas assumenda error quibusdam, mollitia aut corporis sunt numquam ratione dolor aperiam molestiae, temporibus laudantium iste amet ducimus unde consequatur corrupti. Sunt reiciendis modi omnis harum, sapiente ab, architecto blanditiis velit dolores obcaecati officia possimus sed provident nulla. Pariatur error adipisci ratione qui sapiente ipsa rem minima. officia possimus sed provident nullofficia possimus sed provident null'
+            position: absolute
+            top: 15px
+            right: 15px
+            left: 15px
+            bottom: 15px
+            z-index: 1 
+            overflow: hidden
+            filter: blur(4px)
+          &::after
+            content: ''
+            top: 15px
+            right: 15px
+            left: 15px
+            bottom: 15px
+            background: rgba($light, .5)
+            position: absolute
+            z-index: 2
         &__item
           display: flex     
           padding: 15px
@@ -446,8 +486,7 @@
             img
               display: block
               width: 40%
-              margin: 25px auto 0
-              
+              margin: 25px auto 0        
             li
               display: flex
               span

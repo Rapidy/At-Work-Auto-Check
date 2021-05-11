@@ -30,17 +30,24 @@
 
       <nav class="info-menu">
 
-        <a href="#generalInfo" class="info-menu__item active">Общая информация</a>
-        <a href="#carPhotos" class="info-menu__item">Фото машин</a>
-        <a href="#regHistory" class="info-menu__item">История регистрации</a>
-        <a href="#detectiveCheck" class="info-menu__item">Проверка розыска</a>
-        <a href="#limitCheck" class="info-menu__item">Проверка ограничений</a>
-        <a href="#crashCheck" class="info-menu__item">Проверка ДТП</a>
-        <a href="#osagoCheck" class="info-menu__item">Проверка полиса ОСАГО</a>
-        <a href="#pledgeCheck" class="info-menu__item">Проверка залога</a>
-        <a href="#leasingCheck" class="info-menu__item">Проверка лизинга</a>
-        <a href="#taxiCheck" class="info-menu__item">Проверка такси</a>
-        <a href="#mileageCheck" class="info-menu__item">Проверка ДК, пробег</a>
+        <button class="info-menu-mobile__btn">
+          <span></span>
+        </button>
+
+        <ul class="info-menu-list">
+          <a href="#generalInfo" class="info-menu-list__item active">Общая информация</a>
+          <a href="#carPhotos" class="info-menu-list__item">Фото машин</a>
+          <a href="#regHistory" class="info-menu-list__item">История регистрации</a>
+          <a href="#detectiveCheck" class="info-menu-list__item">Проверка розыска</a>
+          <a href="#limitCheck" class="info-menu-list__item">Проверка ограничений</a>
+          <a href="#crashCheck" class="info-menu-list__item">Проверка ДТП</a>
+          <a href="#osagoCheck" class="info-menu-list__item">Проверка полиса ОСАГО</a>
+          <a href="#pledgeCheck" class="info-menu-list__item">Проверка залога</a>
+          <a href="#leasingCheck" class="info-menu-list__item">Проверка лизинга</a>
+          <a href="#taxiCheck" class="info-menu-list__item">Проверка такси</a>
+          <a href="#mileageCheck" class="info-menu-list__item">Проверка ДК, пробег</a>
+          <a href="#penaltyCheck" class="info-menu-list__item">Проверка штрафов</a>
+        </ul>
 
       </nav>
 
@@ -174,6 +181,19 @@
 
         </section>
 
+        <section class="info-main__item" id="penaltyCheck">
+
+          <div class="info-main__item-table__item-input">
+            <input type="text" placeholder="Введите СТС номер">
+            <button>Поиск</button>
+          </div>
+
+          <h2>Проверка штрафов</h2>
+
+          <div class="info-main__item-table hidden" id="penaltyCheckList">
+          </div>
+
+        </section>
 
       </div>
 
