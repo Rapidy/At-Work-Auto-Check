@@ -64,10 +64,29 @@ document.addEventListener('DOMContentLoaded', () => {
 		//save VIN 
 		$('.main-check__btn').click(function(e) {
 			e.preventDefault();
-			let vin_input = $('.checkInput').val();
+			console.log(1)
 
-			if(vin_input != '' && vin_input.length == 17) {
-				localStorage.setItem('vin', vin_input);
+			localStorage.removeItem("vin");
+			localStorage.removeItem("regNm");
+
+
+			// if(vin_input != '' && vin_input.length == 17) {
+			// 	localStorage.setItem('vin', vin_input);
+			// 	document.location.href = "report.html";
+			// }
+
+			if($('.main-check-input').data('id') == 'vinCheck') {
+				let vin_input = $('.checkInput').val();
+				if(vin_input != '' && vin_input.length == 17) {
+					localStorage.setItem('vin', vin_input);
+					document.location.href = "report.html";
+				}
+			} 
+
+			if($('.main-check-input').data('id') == 'numCheck') {
+				let num_input = $('.checkInput').val();
+ 
+				localStorage.setItem('regNm', num_input);
 				document.location.href = "report.html";
 			}
 		})
@@ -416,29 +435,57 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 
 		let resAvto;
-		$.ajax({
-			type: "POST",
-			url: 'backend/avto.php',
-			cache: false,
-			data: {
-				vin: localStorage.getItem('vin')
-			},
-			dataType: 'json', 
-			success: function(data){
-				infoLoading(data);  
-
-				//slider
-				$('.info-main__item-slider').slick({
-					slidesToShow: 4,
-					slidesToScroll: 4,
-					infinite: false
-				})
-
-				$('#preloader').hide()
-
-				resAvto = data;
-			}   
-		});
+		if(localStorage.getItem('vin')) {
+			$.ajax({
+				type: "POST",
+				url: 'backend/avto.php',
+				cache: false,
+				data: {
+					vin: localStorage.getItem('vin')
+				},
+				dataType: 'json', 
+				success: function(data){
+					infoLoading(data);  
+	
+					//slider
+					$('.info-main__item-slider').slick({
+						slidesToShow: 4,
+						slidesToScroll: 4,
+						infinite: false
+					})
+	
+					$('#preloader').hide()
+	
+					resAvto = data;
+				}   
+			});
+		}
+		
+		if(localStorage.getItem('regNm')) {
+			$.ajax({
+				type: "POST",
+				url: 'backend/avto.php',
+				cache: false,
+				data: {
+					regNm: localStorage.getItem('regNm')
+				},
+				dataType: 'json', 
+				success: function(data){
+					infoLoading(data);  
+	
+					//slider
+					$('.info-main__item-slider').slick({
+						slidesToShow: 4,
+						slidesToScroll: 4,
+						infinite: false
+					})
+	
+					$('#preloader').hide()
+	
+					resAvto = data;
+				}   
+			});
+		}
 
 		function downloadPDF(name) {
 			let link = document.createElement('a');
