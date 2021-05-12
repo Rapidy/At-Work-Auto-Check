@@ -555,7 +555,6 @@ document.addEventListener('DOMContentLoaded', () => {
 					$('#penaltyCheckList').append(`<h3>Штрафы отсутвуют</h3>`);
 				}
 
-				$('#penaltyPreloader').hide()
 			});
 		});
 
