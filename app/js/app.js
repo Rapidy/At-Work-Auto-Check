@@ -117,16 +117,16 @@ document.addEventListener('DOMContentLoaded', () => {
 			if($(this).data('id') == 'vinCheckFooter') {
 				$('.numberCheck--footer').hide()
 				$('.vinCheck--footer').show();
-				$('.numberBtn').hide()
-				$('.vinBtn').show()
+				$('.numberBtn').addClass('hidden')
+				$('.vinBtn').removeClass('hidden')
 				$(this).addClass('active')
 			}		
 
 			if($(this).data('id') == 'numberCheckFooter') {
 				$('.vinCheck--footer').hide();
 				$('.numberCheck--footer').show();
-				$('.numberBtn').show()
-				$('.vinBtn').hide()
+				$('.numberBtn').removeClass('hidden')
+				$('.vinBtn').addClass('hidden')
 				$(this).addClass('active')
 			}
 			
