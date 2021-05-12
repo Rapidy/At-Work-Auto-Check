@@ -512,7 +512,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 		$('#ctcNum').click(function(e) {
 			e.preventDefault();
-			$('#penaltyPreloader').show()
+			$('#penaltyPreloader').removeClass('hidden')
 
 			$.ajax({
 				type: "POST",
@@ -525,7 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				dataType: 'json',
 			}).done((data) => {
 				ctc = data;
-				$('#penaltyCheckList').removeClass('hidden');
+				$('#penaltyPreloader').addClass('hidden');
 				$('#ctcInput').hide();
 
 				if(data.length) {
