@@ -527,6 +527,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				ctc = data;
 				$('#penaltyPreloader').addClass('hidden');
 				$('#ctcInput').hide();
+				$('.info-main__item-table').removeClass('hidden')
 
 				if(data.length != 0) {
 					data.map((item) => {
