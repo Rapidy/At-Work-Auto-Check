@@ -524,12 +524,15 @@ document.addEventListener('DOMContentLoaded', () => {
 				},
 				dataType: 'json',
 			}).done((data) => {
-				ctc = data;
+				ctc = JSON.parse(data);
+
 				$('#penaltyPreloader').addClass('hidden');
 				$('#ctcInput').hide();
 				$('.info-main__item-table').removeClass('hidden')
 
-				if(!ctc.length) {
+				console.log(ctc.length)
+
+				if(ctc.length) {
 					ctc.map((item) => {
 						$('#penaltyCheckList').append(`
 							<div class="info-main__item-table__item">	
