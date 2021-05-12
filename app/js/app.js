@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				//slider number
 				$('#carNumber').text(voidReplace(regNum));
 			} else {
-				$('#info').html('<h2>Упссс!. Автомобиль в базе данных не найдена</h2>');
+				$('#info').html('<h2 style="display: flex; justify-content: center; align-items: center">Упссс!. Автомобиль в базе данных не найден</h2>');
 			}
 			
 			//slider photo 
