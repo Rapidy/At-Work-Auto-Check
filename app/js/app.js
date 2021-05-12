@@ -530,7 +530,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				$('#ctcInput').hide();
 				$('.info-main__item-table').removeClass('hidden')
 
-				console.log(ctc.length)
 
 				if(ctc.length) {
 					ctc.map((item) => {
