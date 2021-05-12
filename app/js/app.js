@@ -528,7 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				$('#penaltyPreloader').addClass('hidden');
 				$('#ctcInput').hide();
 
-				if(data.length) {
+				if(data.length != 0) {
 					data.map((item) => {
 						$('#penaltyCheckList').append(`
 							<div class="info-main__item-table__item">	
