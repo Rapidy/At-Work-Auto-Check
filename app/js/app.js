@@ -529,8 +529,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				$('#ctcInput').hide();
 				$('.info-main__item-table').removeClass('hidden')
 
-				if(data.length != "[]") {
-					data.map((item) => {
+				if(!ctc.length) {
+					ctc.map((item) => {
 						$('#penaltyCheckList').append(`
 							<div class="info-main__item-table__item">	
 												
