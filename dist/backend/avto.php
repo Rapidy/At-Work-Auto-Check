@@ -1,0 +1,132 @@
+<?php
+//config
+set_time_limit(0);
+ini_set('max_execution_time', 0);
+
+
+const TOKEN = '5bed5805eee506590a0d889451647c8b';
+
+if(isset($_POST['vin'])) {
+    $vin = $_POST['vin'];
+    $url_osago = "https://api-cloud.ru/api/rsa.php?type=osago&vin=".$vin."&token=".TOKEN;
+} elseif(isset($_POST['regNm'])) {
+    $regNm = $_POST['regNm'];
+    $url_osago = "https://api-cloud.ru/api/rsa.php?type=osago&regNumber=".$regNm."&token=".TOKEN;
+}
+
+//осаго
+$curl_solo = curl_init();
+curl_setopt_array($curl_solo, array(
+  CURLOPT_URL => $url_osago,
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'POST',
+));
+$response = curl_exec($curl_solo);
+curl_close($curl_solo);
+
+//гос номер
+$regNum = json_decode($response)[0]->{"regnum"};
+if(!isset($_POST['vin'])) {
+    $vin = json_decode($response)[0]->{"vin"};
+}
+
+//получение всей инфы по VIN и гос. номеру 
+$urls = array(
+    "https://api-cloud.ru/api/gibdd.php/?type=gibdd&vin=".$vin."&token=".TOKEN,                // основ. инфа 
+    "https://api-cloud.ru/api/gibdd.php/?type=wanted&vin=".$vin."&token=".TOKEN,               // проверка на розыск
+    "https://api-cloud.ru/api/gibdd.php/?type=restrict&vin=".$vin."&token=".TOKEN,             // проверка на огроничения 
+    "https://api-cloud.ru/api/gibdd.php/?type=dtp&vin=".$vin."&token=".TOKEN,                  // проверка на ДТП
+    "https://api-cloud.ru/api/gibdd.php?vin=".$vin."&type=eaisto&token=".TOKEN,                // проверка диаг. карт и пробега
+    // "https://api-cloud.ru/api/rsa.php?type=osago&vin=".$vin."&token=".TOKEN,                   // проверка полиса ОСАГА    
+    "https://api-cloud.ru/api/zalog.php/?type=notary&vin=".$vin."&token=".TOKEN,               // проверка залога по VIN
+    "https://api-cloud.ru/api/zalog.php/?type=fedresurs&vin=".$vin."&token=".TOKEN,            // проверка на налчиие в лизинге 
+    // "https://api-cloud.ru/api/autophoto.php/?type=regnum&regNum=".$regNum."&token=".TOKEN,     // фото авто по гос. номеру
+    // "https://api-cloud.ru/api/taxi.php/?type=regnum&regnum=".$regNum."&token=".TOKEN           // проверка авто в такси 
+);
+
+$nameKeyArray = array(
+    "mainInfo",  
+    "wanted",
+    "limitation",
+    "trfacc",
+    "mileage",
+    // "policy",
+    "deposit",
+    "leasing",
+    // "photo",
+    // "taxi"
+);
+
+
+if(strlen($regNum)) {
+    array_push($urls, "https://api-cloud.ru/api/autophoto.php/?type=regnum&bigPhoto=1&regNum=".$regNum."&token=".TOKEN);
+    array_push($urls, "https://api-cloud.ru/api/taxi.php/?type=regnum&regnum=".$regNum."&token=".TOKEN);
+
+    array_push($nameKeyArray, "photo");
+    array_push($nameKeyArray, "taxi");
+}
+
+$multi = curl_multi_init();
+$handles = [];
+$active = null;
+foreach($urls as $url) {
+    $ch = curl_init($url);
+    curl_setopt_array($ch, array(
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+    ));
+
+    curl_multi_add_handle($multi, $ch);
+    $handles[$url] = $ch;
+}
+
+
+do {
+    $mrc = curl_multi_exec($multi, $active);
+} while ($mrc == CURLM_CALL_MULTI_PERFORM);
+
+
+while ($active && $mrc == CURLM_OK) {
+    
+    if( curl_multi_select($multi) == -1) {
+        usleep(100);
+    }
+
+    do {
+        $mrc = curl_multi_exec($multi, $active);
+    } while ($mrc == CURLM_CALL_MULTI_PERFORM);
+
+}
+
+
+$resAvto = [];
+
+$i = 0;
+
+foreach($handles as $channel) {
+    $html = curl_multi_getcontent($channel);
+
+    $resAvto[$nameKeyArray[$i]] = json_decode($html);
+    $i++;
+
+    curl_multi_remove_handle($multi, $channel);
+}
+
+curl_multi_close($multi);
+
+$resAvto["VIN"] = $vin;
+$resAvto["regNum"] = $regNum;
+$resAvto["policy"] = json_decode($response);
+
+echo json_encode($resAvto);
