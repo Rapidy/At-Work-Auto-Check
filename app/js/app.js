@@ -168,6 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				//slider number
 				$('#carNumber').text(voidReplace(regNum));
 			} else {
+				$('#preloader').hide()
+
 				$('#info').css({'display': 'flex', 'justify-content': 'center', 'align-items': 'center'}).html('<h2>Упссс!. Автомобиль в базе данных не найден</h2>');
 			}
 			
@@ -462,6 +464,11 @@ document.addEventListener('DOMContentLoaded', () => {
 					$('#preloader').hide()
 	
 					resAvto = data;
+				},
+				error: function(data){
+					$('#preloader').hide()
+
+					$('#info').css({'display': 'flex', 'justify-content': 'center', 'align-items': 'center'}).html('<h2>Упссс!. Автомобиль в базе данных не найден</h2>');
 				}   
 			});
 		}
